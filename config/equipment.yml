@@ -1,0 +1,36 @@
+temperature:
+  available: false
+  link: http://127.0.0.1:3000/read_temperature
+  
+bp:
+  available: false
+  link: http://127.0.0.1:3000/read_bp
+  
+pulse_rate:
+  available: false
+  link: http://127.0.0.1:3000/read_pulse_rate
+  
+systolic_pressure:
+  available: false
+  link: http://127.0.0.1:3000/read_systolic_pressure
+  
+diastolic_pressure:
+  available: false
+  link: http://127.0.0.1:3000/read_diastolic_pressure
+
+respiratory_rate:
+  available: false
+  link: http://127.0.0.1:3000/read_respiratory_rate
+  
+weight:
+  available: false
+  link: http://127.0.0.1:3000/read_weight
+  
+height:
+  available: false
+  link: http://127.0.0.1:3000/read_height
+  
+oxygen_saturation:
+  available: false
+  link: http://127.0.0.1:3000/read_oxygen_saturation
+  

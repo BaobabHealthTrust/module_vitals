@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Vitals</title>
+    
+    <script type='text/javascript' language='javascript' src='/touchscreentoolkit/lib/javascripts/touchScreenToolkit.js' defer  ></script>
+    
+    <script type='text/javascript' defer>   
+     
+      <% if !@page["parameters"].nil? %>      
+        <% @page["parameters"].each do |key, value| %>      
+          <%= "var #{key} = #{value};" if key.strip.length > 0 %>      
+        <% end              
+      end %>
+        
+      tt_cancel_destination = '/';
+      tt_cancel_show = '/';
+      var timerTime = 200;
+      
+      function checkReading(id){ 
+          if(__$(id)){
+            var obj = __$(id);
+          } else {
+            return;
+          }
+          
+          var url = obj.getAttribute('equipment_url');
+            
+          if(url == null) return;
+              
+          var httpRequest = new XMLHttpRequest();
+          httpRequest.onreadystatechange = function() {
+              handleAjaxRequest(obj, httpRequest);
+          };
+          try {
+              httpRequest.open('GET', url, true);
+              httpRequest.send(null);
+          } catch(e){
+          }
+      }
+      
+      function handleAjaxRequest(control, aXMLHttpRequest) {
+        if (!aXMLHttpRequest) return;                    
+
+        if (aXMLHttpRequest.readyState == 4 && aXMLHttpRequest.status == 200) {
+                      
+            var result = aXMLHttpRequest.responseText;
+            
+            if (control != null){
+              control.value = result;
+              
+              readingHandle = setTimeout('checkReading(' + control.id + ')', timerTime);
+            } 
+        }
+      
+      }
+        
+    </script>
+  </head>
+  <body>
+    <div id='content'>
+      <form action='/vitals/update' method='post'>
+        <table width='100%' border=1 cellpadding=10 cellspacing=0>
+          <tr>
+            <th colspan=2>
+              <%= "#{(!@page["title"].nil? ? @page["title"] : "&nbsp;")}" %>
+            </th>
+          </tr>
+        
+          <% if !@page["questions"].nil? %>
+      
+            <% @page["questions"].sort.each do |key, value| %>
+            
+              <% if @params.include?(value["param"]) %>
+              
+                  <tr>
+                    <td>
+                      <%= value["question"] %>
+                    </td>
+                    <td>
+                    
+                      <% field = "" %>
+                      
+                      <% (value.keys - ["param", "question"]).each{|f| field = "#{field} #{f}='#{value[f]}' " } %>
+                      
+                      <% if !@equipment[value["param"]].nil? and @equipment[value["param"]]["available"] == true
+                      
+                        field = "#{field} disabled='disabled' equipment_url='#{@equipment[value["param"]]["link"]}' tt_onload='readingHandle = setTimeout(\"checkReading(\" + this.id + \")\", timerTime)' tt_onunload='clearTimeout(readingHandle)' "
+                      
+                      end %>
+                      
+                      <input id="q<%= key %>" name="q<%= key %>" type="text" value="" 
+                          style="width: 100%;" helpText="<%= value["question"] %>" <%= field %> />
+                        
+                    </td>
+                    
+                  </tr>  
+                          
+              <% end %>
+              
+            <% end
+            
+          end %>
+        
+        </table>
+      </form>
+    </div>
+  </body>
+</html>
+

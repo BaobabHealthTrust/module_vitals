@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Patient Vitals</title>
+    <link rel="stylesheet" type="text/css" href="/touchscreentoolkit/lib/stylesheets/touch-fancy.css" />
+    <script language="javascript" type="text/javascript" src="/javascripts/flot/jquery.js"></script>
+    <script language="javascript" type="text/javascript" src="/javascripts/flot/jquery.flot.js"></script>
+    <style type="text/css">
+      body {
+        font-family: Verdana;
+        margin: 0px;
+        -moz-user-select: none;
+        background-color: #fff !important;
+      }
+      
+      h1 {
+        font-weight: normal;
+      }
+      
+      .section {
+        min-width: 280px;
+        height: 170px;
+      }
+      
+      .reading {
+        border-radius: 50px; 
+        background-color: #CBD9CC;
+        font-size: 18px;
+        /*padding: 5px;*/
+        height: 30px;
+      }
+      
+    </style>
+    
+    <script src="/javascripts/Chart.js"></script>
+    
+    <script type="text/javascript">
+      <!--
+      
+        function __$(id){
+          return document.getElementById(id);
+        }
+        
+        function adjustView(){
+          __$("container").style.height = (__$("nav").offsetTop - 130) + "px";
+        }
+        
+        function toggle(obj){
+          var id = obj.getAttribute("tag");
+          
+          if(__$(id)){
+            if(obj.getAttribute("src").trim().match(/un/)){
+            
+              obj.setAttribute("src", "/images/ticked.jpg");
+              
+              if(__$(id)){
+                __$(id).style.backgroundColor = "lightblue";
+              }
+              
+              selected[id] = true;
+              
+            } else {
+            
+              obj.setAttribute("src", "/images/unticked.jpg");
+              
+              if(__$(id)){
+                __$(id).style.backgroundColor = "";
+              }
+              
+              delete selected[id];
+              
+            }
+          }
+        }
+        
+        function showMessage(aMessage, withCancel, timed){
+          
+          if(typeof(tstMessageBar) == "undefined"){
+              __$("content").innerHTML += "<div id='messageBar' class='messageBar'></div>";
+              
+              tstMessageBar = __$('messageBar');
+          }
+          
+          var messageBar = tstMessageBar;
+          messageBar.innerHTML = aMessage +
+          "<br />" + (typeof(withCancel) != "undefined" ? (withCancel == true ?
+              "<button onmousedown=\"tstMessageBar.style.display = 'none'; " +
+              "\"><span>Cancel</span></button>" : "") : "") +
+          "<button style='width: 200px;' onmousedown=\"tstMessageBar.style.display = 'none'; " +
+          "clearTimeout(tstTimerHandle); eval(tstTimerFunctionCall);\"><span>OK</span></button>";
+          if (aMessage.length > 0) {
+              messageBar.style.display = 'block'
+              if((typeof(timed) == "undefined" ? true : timed) == true){
+                  window.setTimeout("hideMessage()",3000)
+              }
+          }
+      }
+
+      function hideMessage(){
+          tstMessageBar.style.display = 'none'
+      }
+      
+      //-->
+    </script>
+  </head>
+  <body onresize="adjustView()" onload="adjustView();">
+    <div id="content">
+    <table width="100%" cellspacing="0" cellpadding="0">
+      <tr style="background-color: #cbd9cc; border-bottom: 1px solid #23704b;">
+        <td style="border-bottom: 1px solid #23704b;" colspan="2">
+          <div style=" height: 100px; margin: 5px;">
+          
+            <table style="color: #155034; border-radius: 20px; background-color: #b2c4b4; 
+                border: 1px outset #23704b; z-index: 100;" cellpadding="5">
+              <tr>
+                <td rowspan="3">
+                  <img src="/images/<%= (@json["person"]["gender"] == "F" ? "fe" : "") rescue "" %>male.png" height="70" style="border-radius: 50px; 
+                      border: 2px outset #fff; padding: 10px; margin: 0px; background-color: #e7f6e8;" />
+                </td>
+                <td style="font-size: 28px;" colspan="2">
+                  <%= @json["person"]["preferredName"]["display"] rescue "&nbsp;" %>
+                </td>
+              </tr>
+              <tr>
+                <td align="right">
+                  Age:
+                </td>
+                <td>
+                  <%= @json["person"]["age"] rescue "&nbsp;" %>
+                </td>
+              </tr>
+              <tr>
+                <td align="right">
+                  <% id = @json["identifiers"][0]["display"].split("=") rescue ["&nbsp;", "&nbsp;"] %>
+                  
+                  <%= "#{id[0].strip}:" rescue "&nbsp;" %>
+                </td>
+                <td>
+                  <%= id[1].strip rescue "&nbsp;" %>
+                </td>
+              </tr>
+            </table>
+          
+          </div>
+        </td>
+        
+        <td style="border-bottom: 1px solid #23704b; text-align: right; font-size: 36px; color: #23704b;">
+          <i style="color: #4b9f51">Patient</i>Vitals
+        </td>
+        <td style="width: 100px; border-bottom: 1px solid #23704b;">
+          <img src="/images/vitals.png" height="100" style="margin-right: 20px;  padding: 5px;
+                margin-top: 0px; float: right;" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6" style="padding: 0px; padding-top: 15px;">
+          <div id="container" style="width: 100%; overflow: auto;">                         
+            
+            <table style="margin: auto; margin-top: 40px;  margin-bottom: 40px;">
+              <tr>
+                <td>
+                
+                  <table class="section" style="border: 1px solid #92b894; border-radius: 20px; padding: 10px;">
+                    <tr>
+                      <td rowspan="3" style="width: 100px; text-align: center;">
+                        <img src="/images/weight.png" height="100" />
+                      </td>
+                      <th>
+                        weight
+                      </th>
+                    </tr>
+                    <tr>
+                      <td align="center" class="reading">
+                        <%= (@target["Weight (kg)"]["value"] rescue "-") %>kg
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center">
+                        <table width="100%" cellspacing=0 cellpadding=3>
+                          <tr id="weight" style="cursor: pointer;" 
+                              onclick="var img = this.getElementsByTagName('img')[0]; toggle(img)">
+                            <td style="text-align: right; font-size: 0.8em;">
+                              Recapture
+                            </td>
+                            <td>
+                              <img src="/images/unticked.jpg" height="25" tag="weight" />
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" colspan="2">
+                        <table>
+                          <tr>
+                            <td style="padding-right: 10px; cursor: pointer;">
+                              <img src="/images/cancel_flat_small_red.png" height="25" tag="weight" />
+                            </td>
+                            <td style="width: 180px;">
+                              <i style="font-size: 0.8em;"><%= (@target["Weight (kg)"]["date"].to_time.strftime("%d/%b/%Y %H:%M") rescue "&nbsp;") %></i>
+                            </td>
+                            <td style="background-color: rgb(192,0,0); width: 30px; 
+                                border-radius: 20px; cursor: pointer;" align="center" checked="true" 
+                                onclick="if(this.getAttribute('checked') == 'false'){
+                                    clicked[<%= @presentation["Weight (kg)"] %>] = true;
+                                    this.setAttribute('checked', 'true');
+                                  } else {
+                                    clicked[<%= @presentation["Weight (kg)"] %>] = false;
+                                    this.setAttribute('checked', 'false');
+                                  }; 
+                                  doPlot(clicked);">
+                              &nbsp;
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  
+                </td> 
+                      
+                <td>
+                
+                  <table class="section" style="border: 1px solid #92b894; border-radius: 20px; padding: 10px;">
+                    <tr>
+                      <td rowspan="3" style="width: 100px; text-align: center;">
+                        <img src="/images/scale.png" height="100" />
+                      </td>
+                      <th>
+                        height
+                      </th>
+                    </tr>
+                    <tr>
+                      <td align="center" class="reading">
+                        <%= (@target["Height (cm)"]["value"] rescue "-") %>cm
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center">
+                        <table width="100%" cellspacing=0 cellpadding=3>
+                          <tr id="height" style="cursor: pointer;" 
+                              onclick="var img = this.getElementsByTagName('img')[0]; toggle(img)">
+                            <td style="text-align: right; font-size: 0.8em;">
+                              Recapture
+                            </td>
+                            <td>
+                              <img src="/images/unticked.jpg" height="25" tag="height" />
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" colspan="2">
+                        <table>
+                          <tr>
+                            <td style="padding-right: 10px; cursor: pointer;">
+                              <img src="/images/cancel_flat_small_red.png" height="25" tag="weight" />
+                            </td>
+                            <td style="width: 180px;">
+                              <i style="font-size: 0.8em;"><%= (@target["Height (cm)"]["date"].to_time.strftime("%d/%b/%Y %H:%M") rescue "&nbsp;") %></i>
+                            </td>
+                            <td style="background-color: rgb(75,100,88); width: 30px; 
+                                  border-radius: 20px; cursor: pointer;"  align="center" checked="true" 
+                                onclick="if(this.getAttribute('checked') == 'false'){
+                                    clicked[<%= @presentation["Height (cm)"] %>] = true;
+                                    this.setAttribute('checked', 'true');
+                                  } else {
+                                    clicked[<%= @presentation["Height (cm)"] %>] = false;
+                                    this.setAttribute('checked', 'false');
+                                  }; 
+                                  doPlot(clicked);">
+                              &nbsp;
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  
+                </td>  
+                
+                <td rowspan="2" colspan="2">
+                
+                  <div style="border: 1px solid #92b894; border-radius: 20px; padding: 10px; width: 545px; height: 320px;">
+                    <!--canvas id="canvas" height="330" width="545"></canvas-->
+                    
+                    <div id="placeholder" style="width:540px;height:315px; margin: auto;"></div>
+                    
+                  </div>
+                  
+                </td>                     
+              </tr>
+              
+              <tr>  
+                
+                <td>
+                
+                  <table class="section" style="border: 1px solid #92b894; border-radius: 20px; padding: 10px;">
+                    <tr>
+                      <td rowspan="3" style="width: 100px; text-align: center;">
+                        <img src="/images/bp.png" height="100" />
+                      </td>
+                      <th>
+                        blood pressure
+                      </th>
+                    </tr>
+                    <tr>
+                      <td align="center" class="reading">
+                        <%= (@target["SYSTOLIC BLOOD PRESSURE"]["value"].to_i rescue "-") %>/<%= (@target["DIASTOLIC BLOOD PRESSURE"]["value"].to_i rescue "-") %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center">
+                        <table width="100%" cellspacing=0 cellpadding=3>
+                          <tr id="bp" style="cursor: pointer;" 
+                              onclick="var img = this.getElementsByTagName('img')[0]; toggle(img)">
+                            <td style="text-align: right; font-size: 0.8em;">
+                              Recapture
+                            </td>
+                            <td>
+                              <img src="/images/unticked.jpg" height="25" tag="bp" />
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" colspan="2">
+                        <table>
+                          <tr>
+                            <td style="padding-right: 10px; cursor: pointer;">
+                              <img src="/images/cancel_flat_small_red.png" height="25" tag="weight" />
+                            </td>
+                            <td style="width: 150px;">
+                              <i style="font-size: 0.8em;"><%= (@target["SYSTOLIC BLOOD PRESSURE"]["date"].to_time.strftime("%d/%b/%Y %H:%M") rescue "&nbsp;") %></i>
+                            </td>
+                            <td style="background-color: rgb(215,142,72); width: 30px; 
+                                border-radius: 20px; cursor: pointer;"   align="center" checked="true" 
+                                onclick="if(this.getAttribute('checked') == 'false'){
+                                    clicked[<%= @presentation["SYSTOLIC BLOOD PRESSURE"] %>] = true;
+                                    this.setAttribute('checked', 'true');
+                                  } else {
+                                    clicked[<%= @presentation["SYSTOLIC BLOOD PRESSURE"] %>] = false;
+                                    this.setAttribute('checked', 'false');
+                                  }; 
+                                  doPlot(clicked);">
+                              &nbsp;
+                            </td>
+                            <td style="background-color: rgb(224, 108, 212); width: 30px; 
+                                border-radius: 20px; cursor: pointer;" align="center" checked="true" 
+                                onclick="if(this.getAttribute('checked') == 'false'){
+                                    clicked[<%= @presentation["DIASTOLIC BLOOD PRESSURE"] %>] = true;
+                                    this.setAttribute('checked', 'true');
+                                  } else {
+                                    clicked[<%= @presentation["DIASTOLIC BLOOD PRESSURE"] %>] = false;
+                                    this.setAttribute('checked', 'false');
+                                  }; 
+                                  doPlot(clicked);">
+                              &nbsp;
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  
+                </td>          
+                <td>
+                
+                  <table class="section" style="border: 1px solid #92b894; border-radius: 20px; padding: 10px;">
+                    <tr>
+                      <td rowspan="3" style="width: 100px; text-align: center;">
+                        <img src="/images/thermometer.png" height="100" />
+                      </td>
+                      <th>
+                        temperature
+                      </th>
+                    </tr>
+                    <tr>
+                      <td align="center" class="reading">
+                        <%= (@target["Temperature (C)"]["value"] rescue "-") %><sup>o</sup>C
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center">
+                        <table width="100%" cellspacing=0 cellpadding=3>
+                          <tr id="temperature" style="cursor: pointer;" 
+                              onclick="var img = this.getElementsByTagName('img')[0]; toggle(img)">
+                            <td style="text-align: right; font-size: 0.8em;">
+                              Recapture
+                            </td>
+                            <td>
+                              <img src="/images/unticked.jpg" height="25" tag="temperature" />
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" colspan="2">
+                        <table>
+                          <tr>
+                            <td style="padding-right: 10px; cursor: pointer;">
+                              <img src="/images/cancel_flat_small_red.png" height="25" tag="weight" />
+                            </td>
+                            <td style="width: 180px;">
+                              <i style="font-size: 0.8em;"><%= (@target["Temperature (C)"]["date"].to_time.strftime("%d/%b/%Y %H:%M") rescue "&nbsp;") %></i>
+                            </td>
+                            <td style="background-color: rgb(72,116,215); width: 30px; 
+                                  border-radius: 20px; cursor: pointer;" align="center" checked="true" 
+                                onclick="if(this.getAttribute('checked') == 'false'){
+                                    clicked[<%= @presentation["Temperature (C)"] %>] = true;
+                                    this.setAttribute('checked', 'true');
+                                  } else {
+                                    clicked[<%= @presentation["Temperature (C)"] %>] = false;
+                                    this.setAttribute('checked', 'false');
+                                  }; 
+                                  doPlot(clicked);">
+                              &nbsp;
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  
+                </td> 
+              </tr>
+              <tr>
+                <td>
+                
+                  <table class="section" style="border: 1px solid #92b894; border-radius: 20px; padding: 10px;">
+                    <tr>
+                      <td rowspan="3" style="width: 100px; text-align: center;">
+                        <img src="/images/spo2.png" height="100" />
+                      </td>
+                      <th>
+                        O<sub>2</sub> saturation
+                      </th>
+                    </tr>
+                    <tr>
+                      <td align="center" class="reading">
+                        <%= (@target["Blood oxygen saturation"]["value"].to_i rescue "-") %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center">
+                        <table width="100%" cellspacing=0 cellpadding=3>
+                          <tr id="oxygen_saturation" style="cursor: pointer;" 
+                              onclick="var img = this.getElementsByTagName('img')[0]; toggle(img)">
+                            <td style="text-align: right; font-size: 0.8em;">
+                              Recapture
+                            </td>
+                            <td>
+                              <img src="/images/unticked.jpg" height="25" tag="oxygen_saturation" />
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" colspan="2">
+                        <table>
+                          <tr>
+                            <td style="padding-right: 10px; cursor: pointer;">
+                              <img src="/images/cancel_flat_small_red.png" height="25" tag="weight" />
+                            </td>
+                            <td style="width: 180px;">
+                              <i style="font-size: 0.8em;"><%= (@target["Blood oxygen saturation"]["date"].to_time.strftime("%d/%b/%Y %H:%M") rescue "&nbsp;") %></i>
+                            </td>
+                            <td style="background-color: rgb(135,178,159); width: 30px; 
+                                  border-radius: 20px; cursor: pointer;" align="center" checked="true" 
+                                onclick="if(this.getAttribute('checked') == 'false'){
+                                    clicked[<%= @presentation["Blood oxygen saturation"] %>] = true;
+                                    this.setAttribute('checked', 'true');
+                                  } else {
+                                    clicked[<%= @presentation["Blood oxygen saturation"] %>] = false;
+                                    this.setAttribute('checked', 'false');
+                                  }; 
+                                  doPlot(clicked);">
+                              &nbsp;
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  
+                </td> 
+                      
+                <td>
+                
+                  <table class="section" style="border: 1px solid #92b894; border-radius: 20px; padding: 10px;">
+                    <tr>
+                      <td rowspan="3" style="width: 100px; text-align: center;">
+                        <img src="/images/heart.png" height="100" />
+                      </td>
+                      <th>
+                        pulse rate
+                      </th>
+                    </tr>
+                    <tr>
+                      <td align="center" class="reading">
+                        <%= (@target["Pulse"]["value"].to_i rescue "-") %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center">
+                        <table width="100%" cellspacing=0 cellpadding=3>
+                          <tr id="pulse_rate" style="cursor: pointer;" 
+                              onclick="var img = this.getElementsByTagName('img')[0]; toggle(img)">
+                            <td style="text-align: right; font-size: 0.8em;">
+                              Recapture
+                            </td>
+                            <td>
+                              <img src="/images/unticked.jpg" height="25" tag="pulse_rate" />
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" colspan="2">
+                        <table>
+                          <tr>
+                            <td style="padding-right: 10px; cursor: pointer;">
+                              <img src="/images/cancel_flat_small_red.png" height="25" tag="weight" />
+                            </td>
+                            <td style="width: 180px;">
+                              <i style="font-size: 0.8em;"><%= (@target["Pulse"]["date"].to_time.strftime("%d/%b/%Y %H:%M") rescue "&nbsp;") %></i>
+                            </td>
+                            <td style="background-color: rgb(73,167,161); width: 30px; 
+                                  border-radius: 20px; cursor: pointer;" align="center" checked="true" 
+                                onclick="if(this.getAttribute('checked') == 'false'){
+                                    clicked[<%= @presentation["Pulse"] %>] = true;
+                                    this.setAttribute('checked', 'true');
+                                  } else {
+                                    clicked[<%= @presentation["Pulse"] %>] = false;
+                                    this.setAttribute('checked', 'false');
+                                  }; 
+                                  doPlot(clicked);">
+                              &nbsp;
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  
+                </td>  
+                
+                <td>
+                
+                  <table class="section" style="border: 1px solid #92b894; border-radius: 20px; padding: 10px;">
+                    <tr>
+                      <td rowspan="3" style="width: 100px; text-align: center;">
+                        <img src="/images/rr.png" height="100" />
+                      </td>
+                      <th>
+                        respiratory rate
+                      </th>
+                    </tr>
+                    <tr>
+                      <td align="center" class="reading">
+                        <%= (@target["Respiratory rate"]["value"].to_i rescue "-") %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center">
+                        <table width="100%" cellspacing=0 cellpadding=3>
+                          <tr id="respiratory_rate" style="cursor: pointer;" 
+                              onclick="var img = this.getElementsByTagName('img')[0]; toggle(img)">
+                            <td style="text-align: right; font-size: 0.8em;">
+                              Recapture
+                            </td>
+                            <td>
+                              <img src="/images/unticked.jpg" height="25" tag="respiratory_rate" />
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" colspan="2">
+                        <table>
+                          <tr>
+                            <td style="padding-right: 10px; cursor: pointer;">
+                              <img src="/images/cancel_flat_small_red.png" height="25" tag="weight" />
+                            </td>
+                            <td style="width: 180px;">
+                              <i style="font-size: 0.8em;"><%= (@target["Respiratory rate"]["date"].to_time.strftime("%d/%b/%Y %H:%M") rescue "&nbsp;") %></i>
+                            </td>
+                            <td style="background-color: rgb(183,111,67); width: 30px; 
+                                  border-radius: 20px; cursor: pointer;"align="center" checked="true" 
+                                onclick="if(this.getAttribute('checked') == 'false'){
+                                    clicked[<%= @presentation["Respiratory rate"] %>] = true;
+                                    this.setAttribute('checked', 'true');
+                                  } else {
+                                    clicked[<%= @presentation["Respiratory rate"] %>] = false;
+                                    this.setAttribute('checked', 'false');
+                                  }; 
+                                  doPlot(clicked);">
+                              &nbsp;
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  
+                </td>   
+                
+                <td>
+                
+                  <table class="section" style="border: 1px solid #92b894; border-radius: 20px; padding: 10px;">
+                    <tr>
+                      <td rowspan="2" style="width: 100px; text-align: center;">
+                        <img src="/images/bmi.png" height="100" />
+                      </td>
+                      <th>
+                        body mass index<br />(BMI)
+                      </th>
+                    </tr>
+                    <tr>
+                      <td align="center" class="reading">
+                        <%= @target["BMI"] rescue "-" %>
+                      </td>
+                    </tr>
+                  </table>
+                  
+                </td>                         
+              </tr>
+              
+            </table>  
+            
+            
+          <div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6" style="border-top: 1px solid #23704b;">
+          &nbsp;
+        </td>
+      </tr>
+    </table>
+    
+    <div id="nav" style="width: 100%; height: 90px; 
+        left: 0px; position: absolute; bottom: 0px;">
+      <img src="/images/close.png" height="65" style="margin-right: 20px;  padding: 5px;
+            border: 1px solid #fff; border-radius: 5px; margin-top: 0px; cursor: pointer; float: right;" 
+            onclick="window.location='/'" 
+          onmouseover="this.style.border = '1px solid #9f1313'"
+          onmouseout="this.style.border = '1px solid #fff'" />
+      <img src="/images/keyboard.png" height="65" style="margin-right: 20px;  padding: 5px;
+            border: 1px solid #fff; border-radius: 5px; margin-top: 0px; cursor: pointer; float: right;" 
+            onclick="if(Object.keys(selected).length == 0){showMessage('Please select tests to do!', false, false)} else {var fields = ''; var keys = Object.keys(selected); for(var i = 0; i < keys.length; i++){fields += (fields.trim().length > 0 ? '+' : '') + keys[i]}; window.location='/vitals/new?fl=' + fields}" 
+          onmouseover="this.style.border = '1px solid #4c72d8'"
+          onmouseout="this.style.border = '1px solid #fff'" />
+    </div>
+  
+  </div>
+  
+	<script>
+    <!--
+    
+    var selected = {};
+    
+    var source = <%= @data.to_json %>;
+
+    var order = <%= @presentation.to_json %>;
+
+    var data = <%= @data.to_json %>;
+
+    var clicked = {};
+
+    <% @presentation.each do |k, v| %>
+    
+      clicked[<%= v %>] = true;
+    
+    <% end %>
+
+	  function doPlot(except) {
+	      
+	      var position = "right";
+	      
+	      var d = {};
+            
+        var p = [];              
+        
+        for(var key in order){
+        
+          var pos = parseInt(order[key]);
+        
+          if(!d[pos]){
+            d[pos] = [];
+          }
+          
+          for(var i = 0; i < data.labels.length; i++){
+            d[pos].push([data.labels[i], data.datasets[pos].data[i]]);
+          }
+           
+          var set = {
+            data: d[pos],
+            lines: {
+              show: (typeof(except) != "undefined" ? (except[pos] ? true : false) : false), 
+              fill: true,
+              points: true 
+            },
+            color: data.datasets[pos].color
+          }
+            
+          p.push(set);
+          
+        }
+    
+        $.plot($("#placeholder"),
+           p,
+           { 
+               xaxes: [ { mode: 'time' } ],
+               yaxes: [ { min: 0 },
+                        {
+                          // align if we are to the right
+                          alignTicksWithAxis: position == "right" ? 1 : null,
+                          position: position
+                        } ],
+               legend: { position: 'sw' }
+           });
+    }
+    
+    function subtract(src, sub){
+      
+      var result = {};
+      
+      for(var i = 0; i < src.length; i++){
+        var found = false;
+        
+        for(var j = 0; j < sub.length; j++){
+          if(src[i] == sub[j]){
+            found = true;
+          }
+        }
+        
+        if(!found) {                       
+          result[src[i]] = true;
+          
+          clicked[src[i]] = true;
+        }
+      }
+      
+      return result;
+    }
+    
+    doPlot(clicked);
+	
+	  //-->
+	</script>
+  </body>
+</html>

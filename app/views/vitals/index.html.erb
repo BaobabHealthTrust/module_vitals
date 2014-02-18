@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <title>Home Page</title>
+        <script type="text/javascript" language="javascript" src="/touchscreentoolkit/lib/javascripts/touchScreenToolkit.js" defer ></script>
+        <meta http-equiv='content-type' content='text/html;charset=UTF-8' />
+        <script language="javascript">
+            tstUsername = "";
+            tt_cancel_destination = '/logout';
+            tt_cancel_show = '/search_by_npid';
+        </script>
+        
+        <style type="text/css">
+          #applicationname {
+            background-color: #B2C4B4 !important;
+          }
+          
+          #scanlabel {
+            color: #155034 !important;
+          }
+          
+          #siterow b {
+            color: #4b6458 !important;
+          }
+          
+          #siterow div {
+            color: #4b6458 !important;
+          }
+          
+          #siteinfo {
+            background-color: #CBD9CC !important;
+          }
+          
+          #user {
+            background-color: #CBD9CC !important;
+          }
+          
+          #footer {
+            background-color: #344b40 !important;
+          }
+          
+          #login b {
+            color: #4b6458 !important;
+          }
+          
+          #login {
+            color: #4b6458 !important;
+          }
+          
+          #logininfo {
+            border: 1px solid #CBD9CC !important;
+            padding-bottom: 5px; !important;
+          }
+        </style>
+    </head>
+    <body>
+        <div id="home">
+            <div id="project_name">
+                <div style="padding-top: 20px;">
+                  <table>
+                    <tr>
+                      <td style="text-align: right; font-size: 26px; color: #23704b;">
+                        <i style="color: #4b9f51">Patient</i>Vitals
+                      </td>
+                      <td style="width: 100px; ">
+                        <img src="/images/vitals.png" height="40" style="margin-right: 20px;  padding: 5px;
+                              margin-top: 0px; float: right;" />
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+            </div>
+            <select id="tabs">
+                <option value="/vitals/overview">
+                    Overview
+                </option>
+            </select>
+
+            <div id="facility"><%= cookies[:parent_location] rescue "&nbsp;" %></div>
+            <div id="location"><%= cookies[:location_name] rescue "&nbsp;" %></div>
+
+            <div id="date">
+                <%= (cookies[:date].to_date rescue Date.today).strftime("%Y-%m-%d") %>
+            </div>
+            <div id="user"><%= cookies[:fullname] %></div>
+
+            <select id="links">
+                <option value='/logout' link='/logout'>Logout</option>
+                <option value='/search_by_name' link='/search_by_name' ttSize="290px">Find / Register Patient</option>
+                <option value='<%= (cookies[:date].to_date rescue Date.today).strftime("%Y-%m-%d") != Date.today.strftime("%Y-%m-%d") ? "/reset_date" : "/change_date" %>'  ttSize="100px"><%= (cookies[:date].to_date rescue Date.today).strftime("%Y-%m-%d") != Date.today.strftime("%Y-%m-%d") ? "Reset" : "Set" %> Date</option>
+                <option value='/location'  ttSize="200px">Change Location</option>
+            </select>
+
+        </div>
+    </body>
+</html>

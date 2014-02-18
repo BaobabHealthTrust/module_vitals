@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Location</title>
+    
+    <script type='text/javascript' language='javascript' src='/touchscreentoolkit/lib/javascripts/touchScreenToolkit.js' defer  ></script>        
+    <script type="text/javascript">
+        <!--
+        var sel = {};
+        var today = new Date();
+        var y = today.getFullYear();
+        var m = padZeros((today.getMonth() + 1), 2);
+        var date0 = y + "-" + m + "-" + padZeros(today.getDate(), 2);
+        var date1 = y+"-"+m+"-10";
+        var date2 = y+"-"+m+"-26";
+        
+        tt_cancel_destination = '/';
+        tt_cancel_show = '/';
+      
+        sel[date1] = 600;
+        sel[date2] = 4000;
+        
+        function padZeros(number, positions){
+            var zeros = parseInt(positions) - String(number).length;
+            var padded = "";
+
+            for(var i = 0; i < zeros; i++){
+                padded += "0";
+            }
+
+            padded += String(number);
+
+            return padded;
+        }
+
+        //-->
+    </script>
+    
+    <style type="text/css">
+    
+      #calendar {
+        margin: auto !important;
+      }
+    
+    </style>
+  </head>
+  <body>
+    <div id='content'>
+      <% form_tag '/set_date' do -%>
+        <table width='100%' border=1 cellpadding=10 cellspacing=0>
+          <tr>
+            <th colspan=2>
+              Change Date
+            </th>
+          </tr>
+          <tr>
+            <td>
+              Set Date
+            </td>
+            <td>
+              <input type="text" id="date" name="date" value="<%= (cookies[:date].to_date rescue Date.today).strftime("%Y-%m-%d") %>" helpText="Set Date"
+                field_type="calendar" />
+            </td>
+          </tr>
+        </table>
+        
+      <% end %>
+    </div>
+  </body>
+</html>

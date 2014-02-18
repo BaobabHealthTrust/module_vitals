@@ -1,0 +1,19 @@
+action: /authenticate
+
+cancel_destination: /logout
+cancel_show: /logout
+
+title: Login
+  
+questions:
+  1:
+    question: Username
+    id: username
+    name: username
+    
+  2:
+    question: Password
+    id: password
+    name: password
+    field_type: password
+    type: password

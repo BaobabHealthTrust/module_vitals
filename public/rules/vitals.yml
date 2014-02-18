@@ -1,0 +1,90 @@
+parameters:
+  measureTemperature: true
+  measurePulse: true
+  measureBP: true
+  measureRR: true
+  measureWeight: true
+  measureHeight: true
+  measureO2Saturation: true  
+  
+check_fields: true
+  
+action: /vitals/update
+
+cancel_destination: /
+cancel_show: /
+
+title: Patient Vitals
+  
+questions:
+  1:
+    question: Temperature Reading
+    max: 50
+    min: 30
+    absmax: 55
+    absmin: 25
+    validation_rule: /d+/
+    validation_message: Only numbers expected!
+    condition: measureTemperature == true
+    param: temperature
+    field_type: number
+    tt_pageStyleClass: NumbersWithUnknownAndDecimal
+    
+  2:
+    question: Pulse Rate
+    max: 50
+    min: 30
+    absmax: 55
+    absmin: 25
+    validation_rule: /d+/
+    validation_message: Only numbers expected!
+    condition: measurePulse == true
+    param: pulse_rate
+    field_type: number
+    tt_pageStyleClass: NumbersWithUnknownAndDecimal
+    
+  3:
+    question: Systolic Pressure
+    condition: measureBP == true
+    param: bp
+    field_type: number
+    tt_pageStyleClass: NumbersWithUnknownAndDecimal
+    
+  4:
+    question: Diastolic Pressure
+    condition: measureBP == true
+    param: bp
+    field_type: number
+    tt_pageStyleClass: NumbersWithUnknownAndDecimal
+    
+  5:
+    question: Respiratory Rate
+    condition: measureRR == true
+    param: respiratory_rate
+    field_type: number
+    tt_pageStyleClass: NumbersWithUnknownAndDecimal
+    
+  6:
+    question: Weight
+    condition: measureWeight == true
+    param: weight
+    field_type: number
+    tt_pageStyleClass: NumbersWithUnknownAndDecimal
+    
+  7:
+    question: Height
+    condition: measureHeight == true
+    param: height
+    field_type: number
+    tt_pageStyleClass: NumbersWithUnknownAndDecimal
+    
+  8:
+    question: Oxygen Saturation
+    condition: measureO2Saturation == true
+    param: oxygen_saturation
+    field_type: number
+    tt_pageStyleClass: NumbersWithUnknownAndDecimal
+    
+    
+    
+    

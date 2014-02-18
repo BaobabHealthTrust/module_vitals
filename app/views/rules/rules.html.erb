@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Vitals</title>
+    
+    <script type='text/javascript' language='javascript' src='/touchscreentoolkit/lib/javascripts/touchScreenToolkit.js' defer  ></script>
+    
+    <script type='text/javascript' defer>   
+     
+      <% if !@rules["parameters"].nil? %>      
+        <% @rules["parameters"].each do |key, value| %>      
+          <%= "var #{key} = #{value};" if key.strip.length > 0 %>      
+        <% end              
+      end %>
+        
+      tt_cancel_destination = '/';
+      tt_cancel_show = '/';
+      var timerTime = 200;
+      
+      function checkReading(id){ 
+          if(__$(id)){
+            var obj = __$(id);
+          } else {
+            return;
+          }
+          
+          var url = obj.getAttribute('equipment_url');
+            
+          if(url == null) return;
+              
+          var httpRequest = new XMLHttpRequest();
+          httpRequest.onreadystatechange = function() {
+              handleAjaxRequest(obj, httpRequest);
+          };
+          try {
+              httpRequest.open('GET', url, true);
+              httpRequest.send(null);
+          } catch(e){
+          }
+      }
+      
+      function handleAjaxRequest(control, aXMLHttpRequest) {
+        if (!aXMLHttpRequest) return;                    
+
+        if (aXMLHttpRequest.readyState == 4 && aXMLHttpRequest.status == 200) {
+                      
+            var result = aXMLHttpRequest.responseText;
+            
+            if (control != null){
+              control.value = result;
+              
+              readingHandle = setTimeout('checkReading(' + control.id + ')', timerTime);
+            } 
+        }
+      
+      }
+        
+      function checkBarcode(){
+        __$("keyboard").style.display = "none";
+        
+        __$("clearButton").style.display = "none";
+        
+        <% if cookies[:location].nil? %>
+          __$("cancelButton").innerHTML = "<span>Logout</span>"
+          
+          tt_cancel_destination = '/logout';
+        <% end %>        
+        
+        if(__$("touchscreenInput" + tstCurrentPage)){
+          if(__$("touchscreenInput" + tstCurrentPage).value.match(/\$/) || 
+            __$("touchscreenInput" + tstCurrentPage).value.match(/\n/)){
+            
+            document.forms[0].submit();
+            
+          }
+        }
+        
+        setTimeout("checkBarcode()", 100);
+      }
+    
+    </script>
+  </head>
+  <body>
+    <div id='content'>
+      
+      <!--form action='<%= (!@rules[:action].nil? ? @rules[:action] : "") %>' method='post'-->
+      <% form_tag "#{(!@rules["action"].nil? ? @rules["action"] : "")}" do -%>
+        <table width='100%' border=1 cellpadding=10 cellspacing=0>
+          <tr>
+            <th colspan=2>
+              <%= "#{(!@rules["title"].nil? ? @rules["title"] : "&nbsp;")}" %>
+            </th>
+          </tr>
+        
+          <% if !@rules["questions"].nil? %>
+      
+            <% if !@rules["check_fields"].nil? and @rules["check_fields"] %>      
+      
+              <% @rules["questions"].sort.each do |key, value| %>
+            
+                <% if @params.include?(value["param"]) %>
+              
+                  <tr>
+                    <td>
+                      <%= value["question"] %>
+                    </td>
+                    <td>
+                    
+                      <% field = "" %>
+                      
+                      <% (value.keys).each{|f| field = "#{field} #{f}='#{value[f]}' " } %>
+                      
+                      <% 
+                      
+                        if !value.keys.include?("id")
+                        
+                          field = "#{field} id='q#{key}' "
+                          
+                        end
+                      
+                        if !value.keys.include?("name")
+                        
+                          field = "#{field} name='q#{key}' "
+                          
+                        end
+                      
+                        if !value.keys.include?("type")
+                        
+                          field = "#{field} type='text' "
+                          
+                        end
+                      
+                      %>
+                      
+                      <input style="width: 100%;" helpText="<%= value["question"] %>" <%= field %> />
+                        
+                    </td>
+                    
+                  </tr>  
+                            
+                <% end
+              
+                end
+              
+             else %>
+      
+              <% @rules["questions"].sort.each do |key, value| %>
+            
+                <tr>
+                  <td>
+                    <%= value["question"] %>
+                  </td>
+                  <td>
+                  
+                    <% field = "" %>
+                    
+                    <% (value.keys).each{|f| field = "#{field} #{f}='#{value[f]}' " } %>
+                    
+                    <% 
+                    
+                      if !value.keys.include?("id")
+                      
+                        field = "#{field} id='q#{key}' "
+                        
+                      end
+                    
+                      if !value.keys.include?("name")
+                      
+                        field = "#{field} name='q#{key}' "
+                        
+                      end
+                    
+                      if !value.keys.include?("type")
+                      
+                        field = "#{field} type='text' "
+                        
+                      end
+                    
+                    %>
+                    
+                    <input style="width: 100%;" helpText="<%= value["question"] %>" <%= field %> />
+                      
+                  </td>
+                  
+                </tr>  
+                          
+              <% end
+              
+            end 
+          
+          end %>
+        
+        </table>
+        
+      <% end %>
+      <!--/form-->
+    </div>
+  </body>
+</html>
+

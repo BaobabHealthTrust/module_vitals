@@ -1,0 +1,14 @@
+action: /verify_location
+
+cancel_destination: /
+cancel_show: /
+
+title: Location
+  
+questions:
+  1:
+    question: Scan Location Barcode
+    id: location
+    name: location
+    tt_onLoad: checkBarcode()
+    class: hideKeyboard
