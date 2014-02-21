@@ -13,8 +13,8 @@
         <% end              
       end %>
         
-      tt_cancel_destination = '/';
-      tt_cancel_show = '/';
+      tt_cancel_destination = '<%= (!@rules["cancel_destination"].nil? ? @rules["cancel_destination"] : "/") %>';
+      tt_cancel_show = '<%= (!@rules["cancel_show"].nil? ? @rules["cancel_show"] : "/") %>';
       var timerTime = 200;
       
       function checkReading(id){ 
@@ -78,13 +78,34 @@
         setTimeout("checkBarcode()", 100);
       }
     
+      function setCookie(field){
+        document.cookie = field + "=" + __$("touchscreenInput" + tstCurrentPage).value;
+      }
+    
     </script>
   </head>
   <body>
     <div id='content'>
       
-      <!--form action='<%= (!@rules[:action].nil? ? @rules[:action] : "") %>' method='post'-->
+      <% unless flash[:notice].nil? %>
+        <script type="text/javascript">
+          <!--
+          setTimeout("showMessage('<%= flash[:notice] %>')", 300);
+          //-->
+        </script>
+      <% end %>
+      <% unless flash[:error].nil? %>
+        <script type="text/javascript">
+          <!--
+          setTimeout("showMessage('<%= flash[:error] %>')", 200);
+          //-->
+        </script>
+      <% end %>
+        
       <% form_tag "#{(!@rules["action"].nil? ? @rules["action"] : "")}" do -%>
+        
+        <%= hidden_field_tag("encounter_type", (!@rules["encounter_type"].nil? ? @rules["encounter_type"] : nil)) %>
+        
         <table width='100%' border=1 cellpadding=10 cellspacing=0>
           <tr>
             <th colspan=2>
@@ -108,7 +129,7 @@
                     
                       <% field = "" %>
                       
-                      <% (value.keys).each{|f| field = "#{field} #{f}='#{value[f]}' " } %>
+                      <% (value.keys).each{|f| field = "#{field} #{f}=\"#{(value[f].to_s.strip.match(/^\@{3}/) ? eval(value[f].to_s.strip.gsub(/^\@{3}/, "")) : value[f])}\" " if f != "options" and  f != "question" } %>
                       
                       <% 
                       
@@ -132,7 +153,21 @@
                       
                       %>
                       
-                      <input style="width: 100%;" helpText="<%= value["question"] %>" <%= field %> />
+                      <% if value.keys.include?("options") %>
+                      
+                          <select style="width: 100%;" helpText="<%= value["question"] %>" <%= field %> >
+                            <% value["options"].each do |element_value, element_innerhtml| %>
+                            
+                              <option value="<%= element_value %>" <%= (value.keys.include?("name") and !params[value["name"]].nil? ? (element_value == params[value["name"]] ? "selected" : "") : "") %> ><%= element_innerhtml %></option>
+                            
+                            <% end %>
+                          </select>
+                          
+                      <% else %>
+                      
+                          <input style="width: 100%;" helpText="<%= value["question"] %>" <%= field %> value="<%= (value.keys.include?("name") and !params[value["name"]].nil? ? params[value["name"]] : "") %>" />
+                          
+                      <% end %>
                         
                     </td>
                     
@@ -152,12 +187,12 @@
                   </td>
                   <td>
                   
-                    <% field = "" %>
-                    
-                    <% (value.keys).each{|f| field = "#{field} #{f}='#{value[f]}' " } %>
-                    
-                    <% 
-                    
+                      <% field = "" %>
+                      
+                      <% (value.keys).each{|f| field = "#{field} #{f}=\"#{(value[f].to_s.strip.match(/^\@{3}/) ? eval(value[f].to_s.strip.gsub(/^\@{3}/, "")) : value[f])}\" " if f != "options" and  f != "question" } %>
+                      
+                      <% 
+                      
                       if !value.keys.include?("id")
                       
                         field = "#{field} id='q#{key}' "
@@ -178,8 +213,22 @@
                     
                     %>
                     
-                    <input style="width: 100%;" helpText="<%= value["question"] %>" <%= field %> />
+                      <% if value.keys.include?("options") %>
                       
+                          <select style="width: 100%;" helpText="<%= value["question"] %>" <%= field %> >
+                            <% value["options"].each do |element_value, element_innerhtml| %>
+                            
+                              <option value="<%= element_value %>" <%= (value.keys.include?("name") and !params[value["name"]].nil? ? (element_value == params[value["name"]] ? "selected" : "") : "") %> ><%= element_innerhtml %></option>
+                            
+                            <% end %>
+                          </select>
+                          
+                      <% else %>
+                      
+                          <input style="width: 100%;" helpText="<%= value["question"] %>" <%= field %> value="<%= (value.keys.include?("name") and !params[value["name"]].nil? ? params[value["name"]] : "") %>" />
+                          
+                      <% end %>
+                        
                   </td>
                   
                 </tr>  
@@ -193,7 +242,7 @@
         </table>
         
       <% end %>
-      <!--/form-->
+      
     </div>
   </body>
 </html>

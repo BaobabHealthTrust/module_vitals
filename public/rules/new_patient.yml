@@ -1,0 +1,151 @@
+parameters:
+  ask_maiden_name: true
+  ask_home_of_origin_address: true
+  ask_address: true
+  ask_occupation: true
+  ask_religion: true
+
+encounter_type: Registration
+
+action: /create_patient
+  
+questions:
+  1:
+    question: First Name
+    ajaxUrl: /search?given_name=
+    name: given_name
+    id: given_name
+    condition: @@@params["given_name"].blank?
+  2:
+    question: Middle Name
+    ajaxUrl: /search?given_name=
+    optional: true
+    name: middle_name
+  3:
+    question: Family Name
+    ajaxUrl: /search?family_name=
+    name: family_name
+    id: family_name
+    condition: @@@params["family_name"].blank?
+  4:
+    question: Gender
+    options:
+      M: Male
+      F: Female
+    id: gender
+    name: gender
+    condition: @@@params["gender"].blank?
+  5:
+    question: Maiden Name
+    ajaxUrl: /search?family_name=
+    condition: ask_maiden_name == true && __$('gender').value == 'F'
+    optional: true
+    name: maiden_name
+  6:
+    question: Year of birth 
+    field_type: number
+    absoluteMin: @@@Date.today - 120.year
+    min: @@@Date.today - 70.year
+    max: @@@Date.today - 10.year
+    absoluteMax: @@@Date.today - 1.year
+    tt_pageStyleClass: Numeric NumbersOnlyWithUnknown
+    id: person_birth_year
+    name: person_birth_year
+    tt_onLoad: __$('given_name').removeAttribute('condition'); __$('family_name').removeAttribute('condition'); __$('gender').removeAttribute('condition'); 
+  7:
+    question: Month of birth 
+    options:
+      1: January
+      2: February
+      3: March
+      4: April
+      5: May
+      6: June
+      7: July
+      8: August
+      9: September
+      10: October
+      11: November
+      12: December
+      unknown: Unknown
+    id: person_birth_month
+    name: person_birth_month
+    condition: __$('person_birth_year').value.trim().match(/^\d+$/)
+  8:
+    question: Birth day
+    condition: (__$('person_birth_year').value.trim().match(/^\d+$/) && __$('person_birth_month').value.trim().match(/^\d+$/))
+    tt_onLoad: getDayOfMonthPicker(__$('person_birth_year').value, __$('person_birth_month').value)
+    id: person_birth_day
+    name: person_birth_day
+  9:
+    question: Age Estimate
+    absoluteMin: 0
+    absoluteMax: 120
+    field_type: number
+    tt_pageStyleClass: NumbersOnly Numeric
+    condition: __$('person_birth_year').value.match(/unknown/i)
+    id: age
+    name: age
+  10:
+    question: Region of origin
+    condition: ask_home_of_origin_address == true
+    ajaxUrl: /search?region_of_origin=
+    id: region_of_origin
+    tt_onUnLoad: setCookie('region_of_origin')
+  11:
+    question: District of origin
+    ajaxUrl: /search?district_of_origin=
+    condition: ask_home_of_origin_address == true
+    id: district_of_origin
+    name: district_of_origin
+    tt_onUnLoad: setCookie('district_of_origin')
+  12:
+    question: T/A of origin
+    ajaxUrl: /search?ta_of_origin=
+    condition: ask_home_of_origin_address == true
+    id: ta_of_origin
+    name: ta_of_origin
+    tt_onUnLoad: setCookie('ta_of_origin')
+  13:
+    question: Home village
+    ajaxUrl: /search?village_of_origin=
+    condition: ask_home_of_origin_address == true
+    name: village_of_origin
+  14:
+    question: Current region of residence
+    ajaxUrl: /search?region_of_residence=
+    condition: ask_address == true
+    id: region_of_residence
+    tt_onUnLoad: setCookie('region_of_residence')
+  15:
+    question: Current district of residence
+    ajaxUrl: /search?district_of_residence=
+    condition: ask_address == true
+    id: district_of_residence
+    name: district_of_residence
+    tt_onUnLoad: setCookie('district_of_residence')
+  16:
+    question: Current area of residence
+    ajaxUrl: /search?ta_of_residence=
+    condition: ask_address == true
+    id: ta_of_residence
+    name: ta_of_residence
+    tt_onUnLoad: setCookie('ta_of_residence')
+  17:
+    question: Current location of residence
+    ajaxUrl: /search?village_of_residence=
+    condition: ask_address == true
+    name: village_of_residence
+  18:
+    question: Occupation
+    ajaxUrl: /search?occupation=
+    condition: ask_occupation == true
+    name: occupation
+  19:
+    question: Religion
+    ajaxUrl: /search?religion=
+    condition: ask_religion == true
+    name: religion
+    
+    
+    

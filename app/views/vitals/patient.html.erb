@@ -105,6 +105,22 @@
   </head>
   <body onresize="adjustView()" onload="adjustView();">
     <div id="content">
+  
+    <% unless flash[:notice].nil? %>
+      <script type="text/javascript">
+        <!--
+        setTimeout("showMessage('<%= flash[:notice] %>')", 300);
+        //-->
+      </script>
+    <% end %>
+    <% unless flash[:error].nil? %>
+      <script type="text/javascript">
+        <!--
+        setTimeout("showMessage('<%= flash[:error] %>')", 200);
+        //-->
+      </script>
+    <% end %>
+        
     <table width="100%" cellspacing="0" cellpadding="0">
       <tr style="background-color: #cbd9cc; border-bottom: 1px solid #23704b;">
         <td style="border-bottom: 1px solid #23704b;" colspan="2">

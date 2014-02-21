@@ -22,22 +22,33 @@
         background-color: #B2C4B4 !important;
       }
     
-      td.female{
+      div.highlighted {
+        background-color: lightblue !important;
+        color: #000;
+      }
+    
+      div.female{
         border-radius: 150px;
         border-right: 5px solid magenta;
         border-bottom: 1px solid magenta;
-        padding: 20px;
+        padding: 15px;
         color: magenta;
         background-color: rgba(223, 47, 229, 0.1);
+        width: 260px;
+        height: 260px;
+        margin: auto;
       }
     
-      td.male{
+      div.male{
         border-radius: 150px;
         border-right: 5px solid #2f66e5;
         border-bottom: 1px solid #2f66e5;
-        padding: 20px;
+        padding: 15px;
         color: blue;
         background-color: rgba(47, 102, 229, 0.1);
+        width: 260px;
+        height: 260px;
+        margin: auto;
       }
     
     </style>
@@ -93,17 +104,25 @@
           newPatient.id = "newPatient";
           newPatient.style.cssFloat = "right";
           
+          newPatient.onmousedown = function(){
+            window.location = "/new_patient?given_name=" + __$("given_name").value.trim() + 
+                "&family_name=" + __$("family_name").value.trim() + "&gender=" +
+                __$("gender").value.trim();
+          }
+          
           footer.appendChild(newPatient);
       
-          var selectPatient = document.createElement("button");
-          selectPatient.innerHTML = "<span>Select Patient</span>";
-          selectPatient.id = "selectPatient";
-          selectPatient.style.cssFloat = "right";
-          selectPatient.className = "gray";
-          
-          footer.appendChild(selectPatient);
-      
           ajaxSearch();
+      }
+      
+      function deselectAllAndSelect(me){
+        for(var i = 0; i < __$("rightpanel").children.length; i++){
+          if(__$("rightpanel").children[i].id == me){
+            __$("rightpanel").children[i].className = "element highlighted";
+          } else {
+            __$("rightpanel").children[i].className = "element " + (__$("rightpanel").children[i].getAttribute("tag") == "odd" ? "odd" : "");
+          }
+        }
       }
       
       function ajaxSearch(){      
@@ -134,6 +153,10 @@
             
             patients = JSON.parse(result);
             
+            if(Object.keys(patients).length == 0){
+              __$("rightpanel").innerHTML = "<div style='margin: auto; padding: 20px; font-size: 24px; font-style: italic;'>No results found!</div>";
+            }
+            
             i = 0;
             for(var uuid in patients){
               
@@ -145,14 +168,17 @@
               div.setAttribute("tag", (i%2 > 0 ? "odd" : "even"))
               
               div.onclick = function(){
+                deselectAllAndSelect(this.id);
+                
                 showPatient(this.id);
                 
                 __$("patient").value = this.id;
                 
-                if(__$('selectPatient')){
-                  __$("selectPatient").className = "blue";
+                if(__$('nextButton')){
+                  __$("nextButton").innerHTML = "<span>Select</span>"
+                  __$("nextButton").className = "green navButton";
                 
-                  __$('selectPatient').onclick = function(){
+                  __$('nextButton').onmousedown = function(){
                     document.forms[0].submit();
                   }
                 }
@@ -182,6 +208,7 @@
         table.setAttribute("cellspacing", 0);
         table.style.fontSize = "32px";
         table.style.color = "#175034";
+        table.style.width = "100%";
         
         __$("leftpanel").appendChild(table);
         
@@ -257,12 +284,12 @@
         
         var cell4_2 = document.createElement("td");
         cell4_2.style.fontStyle = "italic";
-        cell4_2.innerHTML = (patients[uuid]["gender"] == "M" ? "<img src='/images/male.png' />" : 
-            (patients[uuid]["gender"] == "F" ? "<img src='/images/female.png' />" : ""));
+        cell4_2.innerHTML = "<div class='" + (patients[uuid]["gender"] == "M" ? "male" : 
+            (patients[uuid]["gender"] == "F" ? "female" : "")) + "'>" + (patients[uuid]["gender"] == "M" ? "<img src='/images/male.png' height='250' />" : 
+            (patients[uuid]["gender"] == "F" ? "<img src='/images/female.png' height='250' />" : "")) + "</div>";
             
-        cell4_2.className = (patients[uuid]["gender"] == "M" ? "male" : 
-            (patients[uuid]["gender"] == "F" ? "female" : ""));
-        
+        cell4_2.setAttribute("align", "center");
+            
         tr4.appendChild(cell4_2);
         
         var tr5 = document.createElement("tr");
@@ -322,19 +349,19 @@
             <td>
               <select id="gender" name="gender" value="" helpText="Gender" optional="true">
                 <option></option>
-                <option>Female</option>
-                <option>Male</option>
+                <option value="F">Female</option>
+                <option value="M">Male</option>
               </select>
             </td>
           </tr>
           <tr>
             <td>
-              Select Patient
+              Select Patient or Create New Patient
             </td>
             <td>
               <input type="text" id="selected_patient" name="selected_patient" value="" 
-                  helpText="Select Patient" tt_onLoad="loadNames()" optional="true" 
-                  tt_pageStyleClass="NoControls NoKeyboard" tt_onUnLoad="if(__$('extras')) __$('buttons').removeChild(__$('extras'));" />
+                  helpText="Select Patient or Create New Patient" tt_onLoad="__$('nextButton').className = 'gray navButton'; __$('nextButton').onmousedown = function(){}; loadNames()" optional="true" 
+                  tt_pageStyleClass="NoControls NoKeyboard" tt_onUnLoad="__$('nextButton').className = 'green navButton'; __$('nextButton').onmousedown = function(){gotoNextPage()}; if(__$('extras')) __$('buttons').removeChild(__$('extras'));" />
             </td>
           </tr>
         </table>

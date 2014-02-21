@@ -28,6 +28,10 @@ ActionController::Routing::Routes.draw do |map|
   
   map.vitals "/set_patient", :controller => 'vitals', :action => 'set_patient'
   
+  map.vitals "/new_patient", :controller => 'vitals', :action => 'new_patient'
+  
+  map.vitals "/create_patient", :controller => 'vitals', :action => 'create_patient'
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

@@ -190,6 +190,8 @@ class VitalsController < ApplicationController
     
     @readings.each do |concept, members|
       
+      next if presets[concept].nil?
+      
       @order << concept
       
       @data[:labels].each{|month|        
@@ -198,7 +200,7 @@ class VitalsController < ApplicationController
       
       @data[:datasets] << presets[concept]
       
-    end
+    end # rescue nil
     
     @presentation = {}
     
@@ -233,7 +235,74 @@ class VitalsController < ApplicationController
   end
 
   def update
-    render :layout => false
+    fields = [
+      "5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 
+      "5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 
+      "5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 
+      "5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 
+      "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 
+      "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 
+      "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 
+      "5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    ]
+  
+    # raise params.to_yaml
+  
+    query = ActiveSupport::OrderedHash.new
+  
+=begin
+    query = {     
+      "patient" => cookies[:current_patient],     
+      "encounterDatetime" => (cookies[:date].to_date rescue Date.today).strftime("%Y-%m-%d"),     
+      "location" => cookies[:location_name],     
+      "encounterType" => params[:encounter_type],     
+      "provider" => cookies[:user_person],     
+      "obs" => []    
+    }
+=end 
+
+    query["patient"] = cookies[:current_patient]     
+    query["encounterDatetime"] = (cookies[:date].to_date rescue Date.today).strftime("%Y-%m-%d")     
+    query["location"] = cookies[:location_name]     
+    query["encounterType"] = params[:encounter_type]     
+    query["provider"] = cookies[:user_person]     
+    query["obs"] = [] 
+
+    fields.each do |field|
+
+      if !params[field].nil?
+      
+        hash = ActiveSupport::OrderedHash.new
+        
+        hash["concept"] = field
+        hash["value"] = params[field]
+        
+        query["obs"] << hash
+      
+      end    
+    
+    end
+    
+    # raise query.to_json
+    
+    res = RestClient.post("http://#{@openmrslink}/ws/rest/v1/encounter", query.to_json, {:content_type => :json, :Cookie => "JSESSIONID=#{cookies[:jsessionid]}", :accept => :json}) #  rescue nil
+    
+    # raise res.inspect
+    
+    if res.nil?
+    
+      flash[:error] = "Data save error!"
+    
+      redirect_to "/patient" and return
+    
+    else 
+    
+      flash[:notice] = "Record saved!"
+      
+      redirect_to "/patient" and return
+    
+    end  
+    
   end
 
   def login  
@@ -263,6 +332,8 @@ class VitalsController < ApplicationController
       res = RestClient.get("http://#{link}/ws/rest/v1/user?q=#{params[:username]}&v=full", {:Cookie => "JSESSIONID=#{json["sessionId"]}", :accept => :json})
       
       json = JSON.parse(res) rescue {}
+    
+      cookies[:user_person] = json["results"][0]["person"]["uuid"]
     
       cookies[:user_uuid] = json["results"][0]["uuid"] # rescue nil
       
@@ -369,38 +440,186 @@ class VitalsController < ApplicationController
 
   def search
     
-    res = RestClient.get("http://#{@openmrslink}/ws/rest/v1/patient?q=#{params[:name].gsub(/\s/, "+")}&v=full", {:Cookie => "JSESSIONID=#{cookies[:jsessionid]}", :accept => :json}) # rescue nil
+    if !params[:name].nil?
     
-    result = {}
-    
-    if !res.nil?
-    
-      json = JSON.parse(res) rescue {}
-    
-      json["results"].each do |o|
-      
-        person = {
-          :uuid => o["uuid"],
-          :name => o["person"]["display"],
-          :age => o["person"]["age"],
-          :estimated => o["person"]["birthdateEstimated"],
-          :identifier => o["identifiers"].first["identifier"],
-          :idtype => o["identifiers"].first["identifierType"]["display"],
-          :gender => o["person"]["gender"],
-          :village => o["person"]["preferredAddress"]["cityVillage"]
-        }
-      
-        result[o["uuid"]] = person
+        res = RestClient.get("http://#{@openmrslink}/ws/rest/v1/patient?q=#{params[:name].gsub(/\s/, "+")}&v=full", {:Cookie => "JSESSIONID=#{cookies[:jsessionid]}", :accept => :json}) # rescue nil
         
-      end
+        result = {}
         
-      # raise result.inspect    
+        if !res.nil?
+        
+          json = JSON.parse(res) rescue {}
+        
+          json["results"].each do |o|
+          
+            person = {
+              :uuid => (o["uuid"] rescue nil),
+              :name => (o["person"]["display"] rescue nil),
+              :age => (o["person"]["age"] rescue nil),
+              :estimated => (o["person"]["birthdateEstimated"] rescue nil),
+              :identifier => (o["identifiers"].first["identifier"] rescue nil),
+              :idtype => (o["identifiers"].first["identifierType"]["display"] rescue nil),
+              :gender => (o["person"]["gender"] rescue nil),
+              :village => (o["person"]["preferredAddress"]["cityVillage"] rescue nil)
+            }
+          
+            result[o["uuid"]] = person
+            
+          end
+            
+        end 
+        
+        render :text => result.to_json and return
+        
+    elsif !params[:given_name].nil?
+      
+      search_given_name(params[:given_name]) and return     
+     
+    elsif !params[:family_name].nil?
+      
+      search_family_name(params[:family_name]) and return     
+     
+    elsif !params[:occupation].nil?
+      
+      search_occupation(params[:occupation]) and return     
+     
+    elsif !params[:religion].nil?
+      
+      search_religion(params[:religion]) and return     
+     
+    elsif !cookies[:region_of_residence].nil? and !cookies[:district_of_residence].nil? and !cookies[:ta_of_residence].nil? and !params[:village_of_residence].nil?
+      
+      search_village(cookies[:region_of_residence], cookies[:district_of_residence], cookies[:ta_of_residence], params[:village_of_residence]) and return     
+     
+    elsif !cookies[:region_of_residence].nil? and !cookies[:district_of_residence].nil? and !params[:ta_of_residence].nil?
+      
+      search_ta(cookies[:region_of_residence], cookies[:district_of_residence], params[:ta_of_residence]) and return     
+     
+    elsif !cookies[:region_of_residence].nil? and !params[:district_of_residence].nil?
+      
+      search_district(cookies[:region_of_residence], params[:district_of_residence]) and return     
+     
+    elsif !params[:region_of_residence].nil?
+      
+      search_region(params[:region_of_residence]) and return     
+     
+     
+     
+    elsif !cookies[:region_of_origin].nil? and !cookies[:district_of_origin].nil? and !cookies[:ta_of_origin].nil? and !params[:village_of_origin].nil?
+      
+      search_village(cookies[:region_of_origin], cookies[:district_of_origin], cookies[:ta_of_origin], params[:village_of_origin]) and return     
+     
+    elsif !cookies[:region_of_origin].nil? and !cookies[:district_of_origin].nil? and !params[:ta_of_origin].nil?
+      
+      search_ta(cookies[:region_of_origin], cookies[:district_of_origin], params[:ta_of_origin]) and return     
+     
+    elsif !cookies[:region_of_origin].nil? and !params[:district_of_origin].nil?
+      
+      search_district(cookies[:region_of_origin], params[:district_of_origin]) and return     
+     
+    elsif !params[:region_of_origin].nil?
+      
+      search_region(params[:region_of_origin]) and return     
+     
+    end
+           
+    render :text => ""       
+  end
+
+  def search_given_name(name)
+    result = ["<li value='#{name}'>#{name}</li>"]
     
-      # raise result.to_yaml
+    render :text => result.join('')
+  end
+  
+  def search_family_name(name)
+    result = ["<li value='#{name}'>#{name}</li>"]
     
-    end  
-       
-    render :text => result.to_json 
+    render :text => result.join('')
+  end
+  
+  def search_occupation(name)
+    occupations = ["Housewife", "Policeman", "Soldier", "Business", "Student", "Other", "Farmer"]
+    
+    result = []
+    
+    occupations.sort.each do |occupation|
+  
+      result << "<li value='#{occupation}'>#{occupation}</li>" if (!name.blank? and occupation.downcase.match("^" + name.downcase.strip)) or name.blank?
+    
+    end
+    
+    render :text => result.join('')
+  end
+  
+  def search_religion(name)
+    religions = ["Presbyterian", "Catholic", "Jehovah's Witness", "Adventist", "Moslem", "Other"]
+    
+    result = []
+    
+    religions.sort.each do |religion|
+  
+      result << "<li value='#{religion}'>#{religion}</li>" if (!name.blank? and religion.downcase.match("^" + name.downcase.strip)) or name.blank?
+    
+    end
+    
+    render :text => result.join('')
+  end
+  
+  def search_region(name)
+    regions = YAML.load_file("#{Rails.root}/public/data/national.yml") rescue {}
+    
+    result = []
+    
+    regions.keys.sort.each do |region|
+  
+      result << "<li value='#{region}'>#{region}</li>" if (!name.blank? and region.downcase.match("^" + name.downcase.strip)) or name.blank?
+    
+    end
+    
+    render :text => result.join('')
+  end
+  
+  def search_district(region, name)
+    regions = YAML.load_file("#{Rails.root}/public/data/national.yml")[region] rescue {}
+    
+    result = []
+    
+    regions.keys.sort.each do |district|
+  
+      result << "<li value='#{district}'>#{district}</li>" if (!name.blank? and district.downcase.match("^" + name.downcase.strip)) or name.blank?
+    
+    end
+    
+    render :text => result.join('')
+  end
+  
+  def search_ta(region, district, name)
+    regions = YAML.load_file("#{Rails.root}/public/data/national.yml")[region][district] rescue {}
+    
+    result = []
+    
+    regions.keys.sort.each do |ta|
+  
+      result << "<li value='#{ta}'>#{ta}</li>" if (!name.blank? and ta.downcase.match("^" + name.downcase.strip)) or name.blank?
+    
+    end rescue nil
+    
+    render :text => result.join('')
+  end
+  
+  def search_village(region, district, ta, name)
+    regions = YAML.load_file("#{Rails.root}/public/data/national.yml")[region][district][ta] rescue {}
+    
+    result = []
+    
+    regions.keys.sort.each do |village|
+  
+      result << "<li value='#{village}'>#{village}</li>" if (!name.blank? and village.downcase.match("^" + name.downcase.strip)) or name.blank?
+    
+    end rescue nil
+    
+    render :text => result.join('')
   end
   
   def set_patient
@@ -411,6 +630,108 @@ class VitalsController < ApplicationController
     
     redirect_to "/patient" and return
     
+  end
+  
+  def new_patient
+    @rules = YAML.load_file("#{Rails.root}/public/rules/new_patient.yml") rescue nil
+    
+    render "rules/rules", :layout => false
+  end
+  
+  def create_patient
+  
+    dob = nil
+    estimated = ((params["person_birth_year"].to_s == "unknown" or 
+          params["person_birth_month"].to_s == "unknown" or 
+          params["person_birth_day"].to_s == "unknown") ? true : false)
+    
+    if !params["person_birth_year"].to_s.match(/unknown/i)
+      
+      if !params["person_birth_month"].to_s.match(/unknown/i)
+      
+        if !params["person_birth_day"].to_s.match(/unknown/i)
+                  
+          dob = "#{params["person_birth_year"]}-#{"%02d" % params["person_birth_month"].to_i}-#{"%02d" % params["person_birth_day"].to_i}"        
+          
+        else
+        
+          dob = "#{params["person_birth_year"]}-#{"%02d" % params["person_birth_month"].to_i}-15"
+        
+        end
+      
+      else
+      
+        dob = "#{params["person_birth_year"]}-07-15"
+      
+      end
+      
+    else
+      dob = (Date.today - (params["age"].to_i rescue 0).year).strftime("%Y-07-15")
+    end
+  
+    person = {
+      "names" => [
+        {
+          "givenName" => (params["given_name"] rescue nil),
+          "familyName" => (params["family_name"] rescue nil),
+          "middleName" => (params["middle_name"] rescue nil),
+          "familyName2" => (params["maiden_name"] rescue nil)
+        }
+      ],
+      "addresses" => [
+        {
+          "cityVillage" => (params[:village_of_residence] rescue nil),
+          "address2" => (params[:ta_of_residence] rescue nil),
+          "stateProvince" => (params[:district_of_residence] rescue nil),
+          "address3" => (params[:village_of_origin] rescue nil),
+          "address4" => (params[:ta_of_origin] rescue nil),
+          "address5" => (params[:district_of_origin] rescue nil)
+        }
+      ],
+      "gender" => (params["gender"] rescue nil),
+      "birthdate" => dob,
+      "birthdateEstimated" => estimated
+    }
+    
+    res = RestClient.post("http://#{@openmrslink}/ws/rest/v1/person", person.to_json, {:content_type => :json, :Cookie => "JSESSIONID=#{cookies[:jsessionid]}", :accept => :json}) rescue nil
+    
+    person_uuid = ""
+    
+    if !res.nil?
+    
+      json = JSON.parse(res) rescue {}
+     
+      person_uuid = json["uuid"]
+    
+      patient = {
+        "person" => person_uuid,
+        "identifiers" => [
+          {
+            "identifier" => Time.now.to_i.to_s,    # TODO: Need to add DDE identifier later
+            "identifierType" => "d6bbcbff-7a56-4661-afa3-413e4c328d96",
+            "location" => (cookies[:location] rescue "Unknown Location")
+          }
+        ]
+      }
+    
+      res = RestClient.post("http://#{@openmrslink}/ws/rest/v1/patient", patient.to_json, {:content_type => :json, :Cookie => "JSESSIONID=#{cookies[:jsessionid]}", :accept => :json})  rescue nil
+      
+      if !res.nil?
+      
+        cookies[:current_patient] = person_uuid 
+        
+        flash[:notice] = "Patient Created"
+        
+        redirect_to "/patient" and return
+      
+      end
+      
+    end
+       
+    flash[:error] = "Patient Creation Failed!"
+       
+    redirect_to "/" and return
+       
   end
   
 protected
