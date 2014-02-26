@@ -98,11 +98,11 @@ class VitalsController < ApplicationController
         
           e = o["obsDatetime"].to_time.strftime("%Y-%m-%d %H:%M"); 
           
-          @months[e.to_time.strftime("%Y-%m-01").to_time.to_i * 1000] = e.to_time.strftime("%b/%y") if @months[e.to_time.strftime("%Y-%m-01").to_time.to_i * 1000].nil?
+          @months[e.to_time.strftime("%Y-%m-%d").to_time.to_i * 1000] = e.to_time.strftime("%b/%y") if @months[e.to_time.strftime("%Y-%m-%d").to_time.to_i * 1000].nil?
           
           @readings[o["concept"]["display"]] = {} if @readings[o["concept"]["display"]].nil?
           
-          @readings[o["concept"]["display"]][e.to_time.strftime("%Y-%m-01").to_time.to_i * 1000] = (o["display"][o["concept"]["display"].strip.length + 1, o["display"].length]).strip.to_f
+          @readings[o["concept"]["display"]][e.to_time.strftime("%Y-%m-%d").to_time.to_i * 1000] = (o["display"][o["concept"]["display"].strip.length + 1, o["display"].length]).strip.to_f
           
           @source[o["concept"]["display"]] = {} if @source[o["concept"]["display"]].nil?
           
@@ -133,8 +133,6 @@ class VitalsController < ApplicationController
       end
  
     end 
-    
-    # raise @data.to_yaml
     
     meters = (@target["Height (cm)"]["value"].to_f / 100.0) rescue 0
     
@@ -188,17 +186,23 @@ class VitalsController < ApplicationController
     
     @order = []
     
+    previous = {}
+    
     @readings.each do |concept, members|
       
       next if presets[concept].nil?
       
       @order << concept
       
+      previous[concept] = 0 if previous[concept].nil?
+      
       @data[:labels].each{|month|        
-         presets[concept]["data"] << (members[month])
+         presets[concept]["data"] << (members[month].nil? ? previous[concept] : members[month])
+         
+        previous[concept] = members[month] if !members[month].nil?      
       }
       
-      @data[:datasets] << presets[concept]
+      @data[:datasets] << (presets[concept].nil? ? 0 : presets[concept])
       
     end # rescue nil
     
@@ -209,8 +213,6 @@ class VitalsController < ApplicationController
       @presentation[o] = i
       i = i + 1
     }
-    
-    # raise @data.to_yaml
     
     render :layout => false
   end

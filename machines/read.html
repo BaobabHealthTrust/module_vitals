@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:pt="http://www.plumtree.com/xmlschemas/ptui/">
+    <head>
+        <meta content="text/html;charset=UTF-8" http-equiv="content-type">
+        <link rel="stylesheet" href="lib/stylesheets/graytabs.css" type="text/css">
+        <link rel="stylesheet" href="lib/stylesheets/dashboard.css" type="text/css">
+        <link rel="stylesheet" href="lib/stylesheets/touch-fancy.css" type="text/css">
+        <title>Welcome to the BP Kiosk</title>
+        <script src="/touchscreentoolkit/lib/javascripts/touchScreenToolkit.js" language="javascript" type="text/javascript" defer></script>
+        <script language="javascript" src="lib/javascripts/dashboard.js" type="text/javascript"></script>
+        <style type="text/css">
+            .helpTextClass {
+                margin: auto;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <div id="tabPageContainer">
+                <div id="helpText0" class="helpTextClass" style="margin: auto;">
+                    <h3>
+                        Place your arm in the BP machine and press Start
+                    </h3>                    
+                </div>
+            </div>
+            <!--div id="footer" -->
+            <div id="buttons" class="buttonsDiv">
+                <button id="cancelButton" class="button red navButton" onmousedown="javascript:window.location='/';">
+                    <span>Cancel</span>
+                </button>
+                <button id="nextButton" class="button green navButton" onmousedown="javascript:window.location='/start';">
+                    <span>Start</span>
+                </button>
+            </div>
+        </div>
+    </body>
+</html>

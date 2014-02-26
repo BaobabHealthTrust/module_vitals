@@ -117900,3 +117900,2981 @@ Completed in 680ms | 302 Found [http://localhost/vitals/update]
 Processing VitalsController#patient (for 127.0.0.1 at 2014-02-21 17:22:35) [GET]
 Rendering vitals/patient
 Completed in 5280ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#index (for 127.0.0.1 at 2014-02-24 09:25:36) [GET]
+Redirected to http://localhost:3004/login
+Filter chain halted as [:check_login] rendered_or_redirected.
+Completed in 14ms | 302 Found [http://localhost/]
+
+
+Processing VitalsController#login (for 127.0.0.1 at 2014-02-24 09:25:36) [GET]
+Rendering rules/rules
+Completed in 343ms (View: 252 | 200 OK [http://localhost/login]
+
+
+Processing VitalsController#authenticate (for 127.0.0.1 at 2014-02-24 09:25:46) [POST]
+  Parameters: {"username"=>"admin", "password"=>"test", "encounter_type"=>"", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4="}
+Redirected to http://localhost:3004/
+Completed in 5755ms | 302 Found [http://localhost/authenticate]
+
+
+Processing VitalsController#index (for 127.0.0.1 at 2014-02-24 09:25:52) [GET]
+Redirected to http://localhost:3004/location
+Filter chain halted as [:check_location] rendered_or_redirected.
+Completed in 0ms | 302 Found [http://localhost/]
+
+
+Processing VitalsController#location (for 127.0.0.1 at 2014-02-24 09:25:52) [GET]
+Rendering rules/rules
+Completed in 83ms (View: 3 | 200 OK [http://localhost/location]
+
+
+Processing VitalsController#logout (for 127.0.0.1 at 2014-02-24 09:26:22) [GET]
+Redirected to http://localhost:3004/login
+Completed in 1ms | 302 Found [http://localhost/logout]
+
+
+Processing VitalsController#login (for 127.0.0.1 at 2014-02-24 09:26:22) [GET]
+Rendering rules/rules
+Completed in 2ms (View: 1 | 200 OK [http://localhost/login]
+
+
+Processing VitalsController#authenticate (for 127.0.0.1 at 2014-02-24 09:26:31) [POST]
+  Parameters: {"username"=>"admin", "password"=>"test", "encounter_type"=>"", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4="}
+Redirected to http://localhost:3004/location
+Completed in 533ms | 302 Found [http://localhost/authenticate]
+
+
+Processing VitalsController#location (for 127.0.0.1 at 2014-02-24 09:26:32) [GET]
+Rendering rules/rules
+Completed in 2ms (View: 1 | 200 OK [http://localhost/location]
+
+
+Processing VitalsController#verify_location (for 127.0.0.1 at 2014-02-24 09:26:37) [POST]
+  Parameters: {"location"=>"8d6c993e-c2cc-11de-8d13-0010c6dffd0f", "encounter_type"=>"", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4="}
+Redirected to http://localhost:3004/
+Completed in 178ms | 302 Found [http://localhost/verify_location]
+
+
+Processing VitalsController#index (for 127.0.0.1 at 2014-02-24 09:26:37) [GET]
+Rendering vitals/index
+Completed in 10ms (View: 9 | 200 OK [http://localhost/]
+
+
+Processing VitalsController#overview (for 127.0.0.1 at 2014-02-24 09:26:37) [GET]
+Rendering vitals/overview
+Completed in 41ms (View: 3 | 200 OK [http://localhost/vitals/overview]
+
+
+Processing VitalsController#search_by_name (for 127.0.0.1 at 2014-02-24 09:26:50) [GET]
+Rendering vitals/search_by_name
+Completed in 7ms (View: 6 | 200 OK [http://localhost/search_by_name]
+
+
+Processing VitalsController#search (for 127.0.0.1 at 2014-02-24 09:27:02) [GET]
+  Parameters: {"name"=>" Banda", "gender"=>"0"}
+Completed in 1034ms (View: 0 | 200 OK [http://localhost/search?name=+Banda&gender=0]
+
+
+Processing VitalsController#set_patient (for 127.0.0.1 at 2014-02-24 09:27:10) [POST]
+  Parameters: {"given_name"=>"", "selected_patient"=>"", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4=", "patient"=>"71afcea7-8e53-4603-a8ea-e87d74d4f71b", "family_name"=>"Banda", "gender"=>""}
+Redirected to http://localhost:3004/patient
+Completed in 3ms | 302 Found [http://localhost/set_patient]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:27:10) [GET]
+Rendering vitals/patient
+Completed in 4342ms (View: 14 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 09:27:25) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 27ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing VitalsController#update (for 127.0.0.1 at 2014-02-24 09:27:30) [POST]
+  Parameters: {"5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"=>"78", "encounter_type"=>"Vitals", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4="}
+Redirected to http://localhost:3004/patient
+Completed in 432ms | 302 Found [http://localhost/vitals/update]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:27:30) [GET]
+Rendering vitals/patient
+Completed in 3903ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#index (for 127.0.0.1 at 2014-02-24 09:28:29) [GET]
+Rendering vitals/index
+Completed in 4ms (View: 2 | 200 OK [http://localhost/]
+
+
+Processing VitalsController#overview (for 127.0.0.1 at 2014-02-24 09:28:29) [GET]
+Rendering vitals/overview
+Completed in 14ms (View: 1 | 200 OK [http://localhost/vitals/overview]
+
+
+Processing VitalsController#change_date (for 127.0.0.1 at 2014-02-24 09:28:31) [GET]
+Rendering vitals/change_date
+Completed in 5ms (View: 3 | 200 OK [http://localhost/change_date]
+
+
+Processing VitalsController#set_date (for 127.0.0.1 at 2014-02-24 09:28:36) [POST]
+  Parameters: {"date"=>"2014-01-24", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4="}
+Redirected to http://localhost:3004/
+Completed in 2ms | 302 Found [http://localhost/set_date]
+
+
+Processing VitalsController#index (for 127.0.0.1 at 2014-02-24 09:28:36) [GET]
+Rendering vitals/index
+Completed in 2ms (View: 1 | 200 OK [http://localhost/]
+
+
+Processing VitalsController#overview (for 127.0.0.1 at 2014-02-24 09:28:36) [GET]
+Rendering vitals/overview
+Completed in 20ms (View: 1 | 200 OK [http://localhost/vitals/overview]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 09:28:40) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 3ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing VitalsController#update (for 127.0.0.1 at 2014-02-24 09:28:44) [POST]
+  Parameters: {"5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"=>"75", "encounter_type"=>"Vitals", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4="}
+Redirected to http://localhost:3004/patient
+Completed in 555ms | 302 Found [http://localhost/vitals/update]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:28:45) [GET]
+Rendering vitals/patient
+Completed in 234ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#reset_date (for 127.0.0.1 at 2014-02-24 09:31:28) [GET]
+Redirected to http://localhost:3004/
+Completed in 2ms | 302 Found [http://localhost/reset_date]
+
+
+Processing VitalsController#index (for 127.0.0.1 at 2014-02-24 09:31:28) [GET]
+Rendering vitals/index
+Completed in 3ms (View: 2 | 200 OK [http://localhost/]
+
+
+Processing VitalsController#overview (for 127.0.0.1 at 2014-02-24 09:31:30) [GET]
+Rendering vitals/overview
+Completed in 365ms (View: 1 | 200 OK [http://localhost/vitals/overview]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:31:33) [GET]
+Rendering vitals/patient
+Completed in 3927ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:33:56) [GET]
+Rendering vitals/patient
+Completed in 4199ms (View: 36 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:38:19) [GET]
+Rendering vitals/patient
+Completed in 3704ms (View: 14 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 09:39:06) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 3ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing VitalsController#update (for 127.0.0.1 at 2014-02-24 09:39:14) [POST]
+  Parameters: {"5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"=>"65", "encounter_type"=>"Vitals", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4="}
+Redirected to http://localhost:3004/patient
+Completed in 369ms | 302 Found [http://localhost/vitals/update]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:39:15) [GET]
+Rendering vitals/patient
+Completed in 4620ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:44:25) [GET]
+Rendering vitals/patient
+Completed in 4240ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 09:47:44) [GET]
+  Parameters: {"fl"=>"bp temperature oxygen_saturation pulse_rate respiratory_rate"}
+Rendering rules/rules
+Completed in 3ms (View: 2 | 200 OK [http://localhost/vitals/new?fl=bp+temperature+oxygen_saturation+pulse_rate+respiratory_rate]
+
+
+Processing VitalsController#update (for 127.0.0.1 at 2014-02-24 09:48:13) [POST]
+  Parameters: {"5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"=>"23", "encounter_type"=>"Vitals", "5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"=>"15", "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"=>"14", "5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"=>"36", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4=", "5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"=>"120", "5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"=>"100"}
+Redirected to http://localhost:3004/patient
+Completed in 392ms | 302 Found [http://localhost/vitals/update]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:48:14) [GET]
+Rendering vitals/patient
+Completed in 4720ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:52:03) [GET]
+
+RuntimeError (--- 
+SYSTOLIC BLOOD PRESSURE: 
+  1391212800000: 120.0
+Weight (kg): 
+  1391212800000: 65.0
+  1388534400000: 75.0
+Temperature (C): 
+  1391212800000: 36.0
+Respiratory rate: 
+  1391212800000: 14.0
+Blood oxygen saturation: 
+  1391212800000: 23.0
+DIASTOLIC BLOOD PRESSURE: 
+  1391212800000: 100.0
+Height (cm): 
+  1391212800000: 165.0
+Pulse: 
+  1391212800000: 15.0
+):
+  app/controllers/vitals_controller.rb:137:in `patient'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (19.2ms)
+Rendered rescues/_request_and_response (0.7ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:53:01) [GET]
+
+RuntimeError (--- 
+1391212800000: Feb/14
+1388534400000: Jan/14
+):
+  app/controllers/vitals_controller.rb:154:in `patient'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (19.8ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:53:38) [GET]
+
+RuntimeError (--- 
+:labels: 
+- 1388534400000
+- 1391212800000
+:datasets: 
+- data: 
+  - 
+  - 120.0
+  color: "#d78e48"
+- data: 
+  - 75.0
+  - 65.0
+  color: "#c00"
+- data: 
+  - 
+  - 36.0
+  color: "#4874d7"
+- data: 
+  - 
+  - 14.0
+  color: "#b76f43"
+- data: 
+  - 
+  - 23.0
+  color: "#87b29f"
+- data: 
+  - 
+  - 100.0
+  color: "#e06cd4"
+- data: 
+  - 
+  - 165.0
+  color: "#4b6458"
+- data: 
+  - 
+  - 15.0
+  color: "#49a7a1"
+):
+  app/controllers/vitals_controller.rb:207:in `patient'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (50.3ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:56:18) [GET]
+
+RuntimeError (--- 
+SYSTOLIC BLOOD PRESSURE: 
+  1391212800000: 120.0
+Weight (kg): 
+  1391212800000: 65.0
+  1388534400000: 75.0
+Temperature (C): 
+  1391212800000: 36.0
+Respiratory rate: 
+  1391212800000: 14.0
+Blood oxygen saturation: 
+  1391212800000: 23.0
+DIASTOLIC BLOOD PRESSURE: 
+  1391212800000: 100.0
+Height (cm): 
+  1391212800000: 165.0
+Pulse: 
+  1391212800000: 15.0
+):
+  app/controllers/vitals_controller.rb:193:in `patient'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (51.8ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:57:28) [GET]
+
+RuntimeError (--- 
+:labels: 
+- 1388534400000
+- 1391212800000
+:datasets: 
+- data: 
+  - 1388534400000
+  - 120.0
+  color: "#d78e48"
+- data: 
+  - 75.0
+  - 65.0
+  color: "#c00"
+- data: 
+  - 1388534400000
+  - 36.0
+  color: "#4874d7"
+- data: 
+  - 1388534400000
+  - 14.0
+  color: "#b76f43"
+- data: 
+  - 1388534400000
+  - 23.0
+  color: "#87b29f"
+- data: 
+  - 1388534400000
+  - 100.0
+  color: "#e06cd4"
+- data: 
+  - 1388534400000
+  - 165.0
+  color: "#4b6458"
+- data: 
+  - 1388534400000
+  - 15.0
+  color: "#49a7a1"
+):
+  app/controllers/vitals_controller.rb:209:in `patient'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (18.6ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:57:45) [GET]
+Rendering vitals/patient
+Completed in 4903ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:58:34) [GET]
+
+RuntimeError (--- 
+:labels: 
+- 1388534400000
+- 1391212800000
+:datasets: 
+- data: 
+  - 1388534400000
+  - 120.0
+  color: "#d78e48"
+- data: 
+  - 75.0
+  - 65.0
+  color: "#c00"
+- data: 
+  - 1388534400000
+  - 36.0
+  color: "#4874d7"
+- data: 
+  - 1388534400000
+  - 14.0
+  color: "#b76f43"
+- data: 
+  - 1388534400000
+  - 23.0
+  color: "#87b29f"
+- data: 
+  - 1388534400000
+  - 100.0
+  color: "#e06cd4"
+- data: 
+  - 1388534400000
+  - 165.0
+  color: "#4b6458"
+- data: 
+  - 1388534400000
+  - 15.0
+  color: "#49a7a1"
+):
+  app/controllers/vitals_controller.rb:209:in `patient'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (17.6ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:59:00) [GET]
+
+RuntimeError (--- 
+:labels: 
+- 1388534400000
+- 1391212800000
+:datasets: 
+- data: 
+  - 0
+  - 120.0
+  color: "#d78e48"
+- data: 
+  - 75.0
+  - 65.0
+  color: "#c00"
+- data: 
+  - 0
+  - 36.0
+  color: "#4874d7"
+- data: 
+  - 0
+  - 14.0
+  color: "#b76f43"
+- data: 
+  - 0
+  - 23.0
+  color: "#87b29f"
+- data: 
+  - 0
+  - 100.0
+  color: "#e06cd4"
+- data: 
+  - 0
+  - 165.0
+  color: "#4b6458"
+- data: 
+  - 0
+  - 15.0
+  color: "#49a7a1"
+):
+  app/controllers/vitals_controller.rb:209:in `patient'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (17.8ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 09:59:15) [GET]
+Rendering vitals/patient
+Completed in 4767ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 10:02:02) [GET]
+Rendering vitals/patient
+Completed in 5266ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 10:05:27) [GET]
+
+NameError (undefined local variable or method `month' for #<VitalsController:0x7f08c767fb98>):
+  app/controllers/vitals_controller.rb:203:in `patient'
+  app/controllers/vitals_controller.rb:191:in `each'
+  app/controllers/vitals_controller.rb:191:in `patient'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (19.7ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 10:05:58) [GET]
+Rendering vitals/patient
+Completed in 4650ms (View: 3 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 10:33:56) [GET]
+Rendering vitals/patient
+Completed in 4434ms (View: 3 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 10:34:42) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 3ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 10:37:56) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 3ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing ApplicationController#test_weight (for 127.0.0.1 at 2014-02-24 10:42:16) [GET]
+
+SyntaxError (/home/chimwemwe/projects/vitals-kiosk/code/vitals2_3_5/app/controllers/rules_controller.rb:12: syntax error, unexpected tIDENTIFIER, expecting kEND
+    render :text select.to_s
+                       ^):
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (18.8ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:42:32) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:42:35) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:42:36) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:42:37) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:42:38) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:42:40) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:42:41) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:42:42) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:42:43) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:42:44) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#index (for 127.0.0.1 at 2014-02-24 10:42:50) [GET]
+Rendering vitals/index
+Completed in 3ms (View: 1 | 200 OK [http://localhost/]
+
+
+Processing VitalsController#overview (for 127.0.0.1 at 2014-02-24 10:42:52) [GET]
+Rendering vitals/overview
+Completed in 38ms (View: 1 | 200 OK [http://localhost/vitals/overview]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 10:44:05) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 4ms (View: 2 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 10:45:07) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 5ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 10:45:42) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 5ms (View: 2 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 10:47:14) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 3ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:47:17) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 10:47:35) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 3ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:47:37) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 10:48:34) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 8ms (View: 6 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:48:37) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 10:49:52) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 13ms (View: 10 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:54) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:54) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:54) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:55) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:55) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:55) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:56) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:56) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:56) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:56) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:56) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:57) [GET]
+Completed in 3ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:57) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:57) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:57) [GET]
+Completed in 29ms (View: 8 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:58) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:58) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:58) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:58) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:59) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:59) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:59) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:49:59) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:00) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:00) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:00) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:00) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:01) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:01) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:01) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:01) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:02) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:02) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:02) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:02) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:02) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:03) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:03) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:03) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:03) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:04) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:04) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:04) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:04) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:05) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:05) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:05) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:05) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:06) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:06) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:06) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:06) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:06) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:07) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:07) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:07) [GET]
+Completed in 1ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:07) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:08) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:08) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:08) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:08) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:09) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:09) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:09) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:09) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:10) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:10) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:10) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:10) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:11) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:11) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:11) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:11) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:11) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:12) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:12) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:12) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#update (for 127.0.0.1 at 2014-02-24 10:50:12) [POST]
+  Parameters: {"5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"=>"43", "encounter_type"=>"Vitals", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4="}
+Redirected to http://localhost:3004/patient
+Completed in 256ms | 302 Found [http://localhost/vitals/update]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:13) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 10:50:13) [GET]
+Rendering vitals/patient
+Completed in 4954ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:50:18) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#change_date (for 127.0.0.1 at 2014-02-24 10:50:34) [GET]
+Rendering vitals/change_date
+Completed in 2ms (View: 1 | 200 OK [http://localhost/change_date]
+
+
+Processing VitalsController#set_date (for 127.0.0.1 at 2014-02-24 10:50:52) [POST]
+  Parameters: {"date"=>"2013-07-22", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4="}
+Redirected to http://localhost:3004/
+Completed in 2ms | 302 Found [http://localhost/set_date]
+
+
+Processing VitalsController#index (for 127.0.0.1 at 2014-02-24 10:50:52) [GET]
+Rendering vitals/index
+Completed in 2ms (View: 1 | 200 OK [http://localhost/]
+
+
+Processing VitalsController#overview (for 127.0.0.1 at 2014-02-24 10:50:54) [GET]
+Rendering vitals/overview
+Completed in 17ms (View: 1 | 200 OK [http://localhost/vitals/overview]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 10:51:01) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 3ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:51:03) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:51:03) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:51:03) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:51:03) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:51:04) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:51:04) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:51:04) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:51:04) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:51:05) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:51:05) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:51:05) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#update (for 127.0.0.1 at 2014-02-24 10:51:05) [POST]
+  Parameters: {"5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"=>"20", "encounter_type"=>"Vitals", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4="}
+Redirected to http://localhost:3004/patient
+Completed in 464ms | 302 Found [http://localhost/vitals/update]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:51:06) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 10:51:06) [GET]
+Rendering vitals/patient
+Completed in 463ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:51:06) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#reset_date (for 127.0.0.1 at 2014-02-24 10:51:16) [GET]
+Redirected to http://localhost:3004/
+Completed in 1ms | 302 Found [http://localhost/reset_date]
+
+
+Processing VitalsController#index (for 127.0.0.1 at 2014-02-24 10:51:16) [GET]
+Rendering vitals/index
+Completed in 3ms (View: 1 | 200 OK [http://localhost/]
+
+
+Processing VitalsController#overview (for 127.0.0.1 at 2014-02-24 10:51:19) [GET]
+Rendering vitals/overview
+Completed in 16ms (View: 1 | 200 OK [http://localhost/vitals/overview]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 10:51:26) [GET]
+Rendering vitals/patient
+Completed in 4957ms (View: 3 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 10:52:05) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 3ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:07) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:08) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:08) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:08) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:08) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:09) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:09) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:09) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:09) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:10) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:10) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:10) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:10) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:11) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:11) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:11) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:11) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:11) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:12) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:12) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:12) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:12) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:13) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:13) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:13) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:13) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:14) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:14) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:14) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:14) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:15) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:15) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:15) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:15) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:16) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:16) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:16) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:16) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:16) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:17) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:17) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:17) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:17) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:18) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:18) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:18) [GET]
+Completed in 31ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:18) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:19) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:19) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:19) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:19) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:20) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:20) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:20) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:20) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:21) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:21) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:21) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:21) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:22) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:22) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:22) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:22) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:22) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:23) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:23) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:23) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:23) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:24) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:24) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:24) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:24) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:25) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:25) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:25) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:25) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:26) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:26) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:26) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:26) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:26) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:27) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:27) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:27) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:27) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:28) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:28) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:28) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:28) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:29) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:29) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:52:29) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 10:52:29) [GET]
+Rendering vitals/patient
+Completed in 4770ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 10:55:16) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 3ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:18) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:19) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:19) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:19) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:19) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:19) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:20) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:20) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:20) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:20) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:21) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:21) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:21) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:21) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:22) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:22) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:22) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:22) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:22) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:23) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:23) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:23) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:23) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:24) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:24) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:24) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:24) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:25) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:55:25) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:25) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:25) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:25) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:26) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:26) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:26) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:26) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:27) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:27) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:27) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:27) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:28) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:28) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:28) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:28) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:29) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:29) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:29) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:29) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:29) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:30) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:30) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:30) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:30) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:31) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:31) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:31) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:31) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:32) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:32) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:32) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:32) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:33) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:33) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:33) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:33) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:33) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#change_date (for 127.0.0.1 at 2014-02-24 10:55:34) [GET]
+Rendering vitals/change_date
+Completed in 2ms (View: 1 | 200 OK [http://localhost/change_date]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:34) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:35) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:35) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:35) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:36) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:36) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:36) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:36) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:37) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:37) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:37) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:37) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:38) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:38) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:38) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:38) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:38) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:39) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:39) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:39) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:40) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:40) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:40) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:40) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:40) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:41) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:41) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:41) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:41) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:42) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:42) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:42) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:42) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:43) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:43) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:43) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:43) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:44) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:44) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:44) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:44) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:44) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:45) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:45) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:45) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:46) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:46) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:46) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:46) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:46) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:47) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:47) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:47) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:47) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:48) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:48) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:48) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:48) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:49) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:49) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:49) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:49) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:50) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:50) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:50) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:50) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:50) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:51) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:51) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:51) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:51) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:52) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:52) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:52) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:52) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:53) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:53) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:53) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:53) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:54) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:54) [GET]
+Completed in 32ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:54) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:54) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:55) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#set_date (for 127.0.0.1 at 2014-02-24 10:55:55) [POST]
+  Parameters: {"date"=>"2013-10-14", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4="}
+Redirected to http://localhost:3004/
+Completed in 3ms | 302 Found [http://localhost/set_date]
+
+
+Processing VitalsController#index (for 127.0.0.1 at 2014-02-24 10:55:55) [GET]
+Rendering vitals/index
+Completed in 3ms (View: 1 | 200 OK [http://localhost/]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:55) [GET]
+Completed in 3ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:56) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:56) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:56) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:57) [GET]
+Completed in 29ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#overview (for 127.0.0.1 at 2014-02-24 10:55:57) [GET]
+Rendering vitals/overview
+Completed in 503ms (View: 1 | 200 OK [http://localhost/vitals/overview]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:57) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:58) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:58) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:58) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:58) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:59) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:59) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:59) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:55:59) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:56:00) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:56:00) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:56:00) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:56:00) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:56:01) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:56:01) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:56:01) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:56:01) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:56:01) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:56:02) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:56:02) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:56:02) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:56:02) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing VitalsController#update (for 127.0.0.1 at 2014-02-24 10:56:02) [POST]
+  Parameters: {"5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"=>"10", "encounter_type"=>"Vitals", "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"=>"170", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4="}
+Redirected to http://localhost:3004/patient
+Completed in 283ms | 302 Found [http://localhost/vitals/update]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:56:03) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 10:56:03) [GET]
+Rendering vitals/patient
+Completed in 563ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:56:03) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing VitalsController#reset_date (for 127.0.0.1 at 2014-02-24 10:56:11) [GET]
+Redirected to http://localhost:3004/
+Completed in 1ms | 302 Found [http://localhost/reset_date]
+
+
+Processing VitalsController#index (for 127.0.0.1 at 2014-02-24 10:56:11) [GET]
+Rendering vitals/index
+Completed in 3ms (View: 1 | 200 OK [http://localhost/]
+
+
+Processing VitalsController#overview (for 127.0.0.1 at 2014-02-24 10:56:13) [GET]
+Rendering vitals/overview
+Completed in 17ms (View: 1 | 200 OK [http://localhost/vitals/overview]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 10:56:19) [GET]
+Rendering vitals/patient
+Completed in 5215ms (View: 3 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 10:57:21) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 6ms (View: 2 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:23) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:23) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:23) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:24) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:24) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:24) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:24) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:25) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:25) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:25) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:25) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:26) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:26) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:26) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:26) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:26) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:27) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:27) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:27) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:27) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:28) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:28) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:28) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:28) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:29) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:29) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:29) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:29) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:30) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:30) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:30) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:30) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:30) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:31) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:31) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:31) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:31) [GET]
+Completed in 28ms (View: 1 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:32) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:32) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:32) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:32) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:33) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:33) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:33) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:33) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:33) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:34) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:34) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:34) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:34) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:35) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:35) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:35) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:35) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:36) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:36) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:36) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:36) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:37) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_height (for 127.0.0.1 at 2014-02-24 10:57:37) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_height]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:37) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:37) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:37) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:38) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:38) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:38) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:38) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:38) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:39) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:39) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:39) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:39) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:40) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:40) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 10:57:40) [GET]
+Rendering vitals/patient
+Completed in 5241ms (View: 2 | 200 OK [http://localhost/patient]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:57:45) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 10:59:41) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 3ms (View: 2 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:43) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:44) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:44) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:44) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:44) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:45) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:45) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:45) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:45) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:45) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:46) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:46) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:46) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:46) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:47) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:47) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:47) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:47) [GET]
+Completed in 2ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:48) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:48) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:48) [GET]
+Completed in 1ms (View: 0 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing RulesController#test_weight (for 127.0.0.1 at 2014-02-24 10:59:48) [GET]
+Completed in 2ms (View: 1 | 200 OK [http://localhost/rules/test_weight]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 10:59:48) [GET]
+Rendering vitals/patient
+Completed in 4936ms (View: 3 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 11:00:18) [GET]
+  Parameters: {"fl"=>"weight"}
+Rendering rules/rules
+Completed in 3ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 11:00:42) [GET]
+Rendering vitals/patient
+Completed in 5570ms (View: 3 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 11:01:10) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 6ms (View: 3 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 11:01:23) [GET]
+Rendering vitals/patient
+Completed in 5645ms (View: 3 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#index (for 127.0.0.1 at 2014-02-24 16:22:24) [GET]
+Rendering vitals/index
+Completed in 3ms (View: 2 | 200 OK [http://localhost/]
+
+
+Processing VitalsController#overview (for 127.0.0.1 at 2014-02-24 16:22:29) [GET]
+Redirected to http://localhost:3004/logout
+Completed in 2990ms | 302 Found [http://localhost/vitals/overview]
+
+
+Processing VitalsController#logout (for 127.0.0.1 at 2014-02-24 16:22:32) [GET]
+Redirected to http://localhost:3004/login
+Completed in 2ms | 302 Found [http://localhost/logout]
+
+
+Processing VitalsController#login (for 127.0.0.1 at 2014-02-24 16:22:32) [GET]
+Rendering rules/rules
+Completed in 29ms (View: 21 | 200 OK [http://localhost/login]
+
+
+Processing VitalsController#logout (for 127.0.0.1 at 2014-02-24 16:22:33) [GET]
+Redirected to http://localhost:3004/login
+Completed in 2ms | 302 Found [http://localhost/logout]
+
+
+Processing VitalsController#login (for 127.0.0.1 at 2014-02-24 16:22:33) [GET]
+Rendering rules/rules
+Completed in 2ms (View: 1 | 200 OK [http://localhost/login]
+
+
+Processing VitalsController#authenticate (for 127.0.0.1 at 2014-02-24 16:22:59) [POST]
+  Parameters: {"username"=>"admin", "password"=>"test", "encounter_type"=>"", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4="}
+Redirected to http://localhost:3004/vitals/overview
+Completed in 1061ms | 302 Found [http://localhost/authenticate]
+
+
+Processing VitalsController#overview (for 127.0.0.1 at 2014-02-24 16:23:00) [GET]
+Redirected to http://localhost:3004/location
+Filter chain halted as [:check_location] rendered_or_redirected.
+Completed in 1ms | 302 Found [http://localhost/vitals/overview]
+
+
+Processing VitalsController#location (for 127.0.0.1 at 2014-02-24 16:23:00) [GET]
+Rendering rules/rules
+Completed in 125ms (View: 1 | 200 OK [http://localhost/location]
+
+
+Processing VitalsController#verify_location (for 127.0.0.1 at 2014-02-24 16:23:07) [POST]
+  Parameters: {"location"=>"8d6c993e-c2cc-11de-8d13-0010c6dffd0f", "encounter_type"=>"", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4="}
+Redirected to http://localhost:3004/
+Completed in 569ms | 302 Found [http://localhost/verify_location]
+
+
+Processing VitalsController#index (for 127.0.0.1 at 2014-02-24 16:23:08) [GET]
+Rendering vitals/index
+Completed in 3ms (View: 1 | 200 OK [http://localhost/]
+
+
+Processing VitalsController#overview (for 127.0.0.1 at 2014-02-24 16:23:10) [GET]
+Rendering vitals/overview
+Completed in 15ms (View: 1 | 200 OK [http://localhost/vitals/overview]
+
+
+Processing VitalsController#search_by_name (for 127.0.0.1 at 2014-02-24 16:23:12) [GET]
+Rendering vitals/search_by_name
+Completed in 2ms (View: 1 | 200 OK [http://localhost/search_by_name]
+
+
+Processing VitalsController#search (for 127.0.0.1 at 2014-02-24 16:23:27) [GET]
+  Parameters: {"name"=>" Banda", "gender"=>"0"}
+Completed in 1055ms (View: 40 | 200 OK [http://localhost/search?name=+Banda&gender=0]
+
+
+Processing VitalsController#set_patient (for 127.0.0.1 at 2014-02-24 16:23:31) [POST]
+  Parameters: {"given_name"=>"", "selected_patient"=>"", "authenticity_token"=>"ufWHSVs+PBgm1ZsaRBTOd6Y7vbXV50BeNG3SOPDZ1r4=", "patient"=>"71afcea7-8e53-4603-a8ea-e87d74d4f71b", "family_name"=>"Banda", "gender"=>""}
+Redirected to http://localhost:3004/patient
+Completed in 1ms | 302 Found [http://localhost/set_patient]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 16:23:31) [GET]
+Rendering vitals/patient
+Completed in 5363ms (View: 3 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 16:34:29) [GET]
+Rendering vitals/patient
+Completed in 5561ms (View: 3 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:34:43) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 4ms (View: 2 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#patient (for 127.0.0.1 at 2014-02-24 16:34:52) [GET]
+Rendering vitals/patient
+Completed in 5643ms (View: 3 | 200 OK [http://localhost/patient]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:35:08) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 3ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:37:07) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 31ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:39:10) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 3ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:40:04) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 3ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:40:50) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 3ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2014-02-24 16:40:53) [GET]
+
+ActionController::RoutingError (No route matches "/vitals/127.0.0.1:3005/weight" with {:method=>:get}):
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:41:03) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 6ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:42:18) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 8ms (View: 7 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:42:51) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 10ms (View: 8 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:43:32) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 13ms (View: 9 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:43:55) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 8ms (View: 6 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:44:06) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 13ms (View: 10 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:44:33) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 10ms (View: 8 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:46:03) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 5ms (View: 2 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:47:33) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 4ms (View: 1 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:48:45) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 17ms (View: 13 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:49:02) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 25ms (View: 18 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:50:23) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 14ms (View: 11 | 200 OK [http://localhost/vitals/new?fl=weight+height]
+
+
+Processing VitalsController#new (for 127.0.0.1 at 2014-02-24 16:51:15) [GET]
+  Parameters: {"fl"=>"weight height"}
+Rendering rules/rules
+Completed in 15ms (View: 12 | 200 OK [http://localhost/vitals/new?fl=weight+height]

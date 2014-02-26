@@ -83,6 +83,9 @@ questions:
     tt_pageStyleClass: NumbersWithUnknownAndDecimal
     name: 5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     id: weight
+    tt_onLoad: if(__$('weight').getAttribute('equipment_url')) {__$('keyboard').style.display = 'none'; checkReading('touchscreenInput' + tstCurrentPage)};
+    tt_onUnLoad: __$('keyboard').style.display = 'block';
+    equipment_url: http://127.0.0.1:3005/weight
     
   7:
     question: Height (cm)
@@ -92,6 +95,9 @@ questions:
     tt_pageStyleClass: NumbersWithUnknownAndDecimal
     name: 5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     id: height
+    tt_onLoad: if(__$('height').getAttribute('equipment_url')) {__$('keyboard').style.display = 'none'; checkReading('touchscreenInput' + tstCurrentPage)};
+    tt_onUnLoad: __$('keyboard').style.display = 'block';
+    equipment_url: http://127.0.0.1:3005/height
     
   8:
     question: Oxygen Saturation

@@ -740,7 +740,11 @@
                           alignTicksWithAxis: position == "right" ? 1 : null,
                           position: position
                         } ],
-               legend: { position: 'sw' }
+               legend: { position: 'sw' },
+               series: {
+                  lines: { show: true },
+                  points: { show: true }
+               }
            });
     }
     

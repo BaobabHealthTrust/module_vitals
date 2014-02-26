@@ -15,5 +15,4 @@ questions:
     question: Password
     id: password
     name: password
-    field_type: password
     type: password

@@ -41,15 +41,16 @@
       
       function handleAjaxRequest(control, aXMLHttpRequest) {
         if (!aXMLHttpRequest) return;                    
-
+   
         if (aXMLHttpRequest.readyState == 4 && aXMLHttpRequest.status == 200) {
-                      
+                
             var result = aXMLHttpRequest.responseText;
-            
+             
             if (control != null){
               control.value = result;
               
-              readingHandle = setTimeout('checkReading(' + control.id + ')', timerTime);
+              readingHandle = setTimeout("checkReading('" + control.id + "')", timerTime);
+              
             } 
         }
       
