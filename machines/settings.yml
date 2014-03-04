@@ -1,8 +1,0 @@
-bp:
-  port: /dev/ttyUSB1
-  baud: 9600
-  
-scale:
-  port: /dev/ttyUSB0
-  baud: 9600
-
