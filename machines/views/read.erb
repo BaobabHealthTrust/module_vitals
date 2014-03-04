@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <title>Registration</title>
+        <script type="text/javascript" language="javascript" src="touchscreentoolkit/lib/javascripts/touchScreenToolkit.js" defer  ></script>
+        <script type="text/javascript">
+          <!--
+
+	        var time = 0;      
+	        var timerHnd;    
+
+	        function showTime(forward){
+     		    if(!__$("showTime")){
+		            var div = document.createElement("div");
+		            div.id = "showTime";
+		            div.style.position = "absolute";
+		            div.style.width = "80px";
+		            div.style.height = "80px";
+		            div.style.verticalAlign = "middle";
+		            div.style.textAlign = "center";
+		            div.style.fontSize = "3.5em";
+		            div.style.borderRadius = "100px";
+		            div.style.border = "2px outset green";
+		            div.style.backgroundColor = "green";
+		            div.style.top = "400px";
+		            div.style.color = "white";
+		            div.style.padding = "20px";
+		            div.style.paddingTop = "25px";
+		            div.style.paddingBottom = "15px";
+		            div.style.left = ((document.body.offsetWidth / 2) - 50) + "px";
+		            
+		            __$("content").appendChild(div);		            
+		        }
+		        
+		        __$("showTime").innerHTML = time;
+		        
+		        if(forward){
+		            time++;
+		        } else {
+		            time--;
+		        }
+		        
+		        timerHnd = setTimeout("showTime(" + forward + ")", 1000);
+	        }	    
+
+            function startReading(){
+              
+              showStatus();
+              
+              __$("popupBox").style.left = (document.body.offsetWidth / 2) - (__$("popupBox").offsetWidth / 2);
+              
+              time = 70;
+              
+              showTime(false);
+              
+              __$("stopButton").style.display = "block";
+              
+              ajaxReq("/start");
+              
+            }
+          
+            function stopReading(){
+                var httpRequest = new XMLHttpRequest();
+                
+                httpRequest.onreadystatechange = function() {
+                    clearTimeout(timerHnd);
+                    
+                    __$("stopButton").style.display = "none";
+                    __$("popupBox").style.display = "none";
+                    __$("showTime").style.display = "none";
+                    
+                    window.location = "/read";
+                };                
+                try {                            
+                    httpRequest.open('GET', "/stop", true);
+                    httpRequest.send(null);
+                } catch(e){
+                }
+            }
+          
+            function ajaxReq(url) {
+                var httpRequest = new XMLHttpRequest();
+                httpRequest.onreadystatechange = function() {
+                    handleReq(httpRequest);
+                };
+                try {                            
+                    httpRequest.open('GET', url, true);
+                    httpRequest.send(null);
+                } catch(e){
+                }
+            }
+
+            function handleReq(aXMLHttpRequest) {    
+                if (!aXMLHttpRequest) {
+                  showMessage("Sorry, there was an error!", false, false);
+                  
+                  __$("messageBar").style.left = (document.body.offsetWidth / 2) - (__$("messageBar").offsetWidth / 2);
+                  
+                  return "error";
+                }
+
+                if (aXMLHttpRequest.readyState == 4 && (aXMLHttpRequest.status == 200 || aXMLHttpRequest.status == 304)) {
+                    var result = aXMLHttpRequest.responseText;
+                    
+                    // showMessage(result, false, false); 
+                    
+                    // __$("messageBar").style.left = (document.body.offsetWidth / 2) - (__$("messageBar").offsetWidth / 2);
+                  
+                    window.location = "/readings"
+                }
+            }
+
+          //-->
+        </script>
+    </head>
+    <body>
+        <div id="content">
+            <div>
+                <div id="helpText0" class="helpTextClass" style="margin: auto;">
+                    <p>
+                      <h3 style="text-align: center;">Place your arm in the BP machine and press Start</h3>
+                    </p>
+                </div>
+            </div>
+            <div id="buttons" class="buttonsDiv">
+              <button id="cancelButton" class="button red navButton" onmousedown="javascript:window.location='/bp';">
+                <span>Cancel</span>
+              </button>
+              <button id="nextButton" class="button green navButton" onmousedown="startReading()">
+                <span>Start</span>
+              </button>
+              <button id="stopButton" class="button red navButton" onmousedown="stopReading()" style="display: none">
+                <span>Stop</span>
+              </button>
+            </div>
+        </div>  
+    </body>
+</html>

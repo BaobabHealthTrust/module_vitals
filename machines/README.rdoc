@@ -1,0 +1,36 @@
+= BPKiosk
+
+A Blood Pressure (BP) Kiosk application for measuring and tracking your BP. It 
+interacts with TM-2655 BP Monitors 
+http://www.aandd.jp/products/medical/professional/tm2655.html
+
+== Install
+
+Required Ubuntu Debian packages
+
+  ruby
+  libopenssl-ruby
+  sqlite3
+  libsqlite3-dev
+  libsqlite3-ruby
+  build-essential
+  rubygems
+  
+Install the require ruby gems using bundler. While in the root directory of 
+the project.
+
+  bundle install
+
+Create and initialize your SQLite3 database
+  
+  sqlite3 db/bpkiosk.db < db/schema.sql
+
+== Usage
+
+Run the application using <tt>rackup</tt>
+
+  rackup
+
+Or
+
+  rackup /path/to/bpkiosk/config.ru

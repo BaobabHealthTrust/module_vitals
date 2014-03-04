@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>Registration</title>
+        <script type="text/javascript" language="javascript" src="touchscreentoolkit/lib/javascripts/touchScreenToolkit.js" defer  ></script>
+        <script type="text/javascript">
+          <!--
+          
+            function startReading(){
+              
+              showStatus();
+              
+              __$("popupBox").style.left = (document.body.offsetWidth / 2) - (__$("popupBox").offsetWidth / 2);
+              
+              ajaxReq("/start");
+              
+              // window.location='/start';
+            }
+          
+            function ajaxReq(url) {
+                var httpRequest = new XMLHttpRequest();
+                httpRequest.onreadystatechange = function() {
+                    handleReq(httpRequest);
+                };
+                try {                            
+                    httpRequest.open('GET', url, true);
+                    httpRequest.send(null);
+                } catch(e){
+                }
+            }
+
+            function handleReq(aXMLHttpRequest) {    
+                if (!aXMLHttpRequest) {
+                  showMessage("Sorry, there was an error!", false, false);
+                  
+                  __$("messageBar").style.left = (document.body.offsetWidth / 2) - (__$("messageBar").offsetWidth / 2);
+                  
+                  return "error";
+                }
+
+                if (aXMLHttpRequest.readyState == 4 && (aXMLHttpRequest.status == 200 || aXMLHttpRequest.status == 304)) {
+                    var result = aXMLHttpRequest.responseText;
+                    
+                    showMessage(result, false, false); 
+                    
+                  __$("messageBar").style.left = (document.body.offsetWidth / 2) - (__$("messageBar").offsetWidth / 2);
+                  
+                    // window.location = "/readings"
+                }
+            }
+
+          //-->
+        </script>
+    </head>
+    <body>
+        <div id="content">
+            <div>
+                <div id="helpText0" class="helpTextClass" style="margin: auto;">
+                    <p>
+                      <h3 style="text-align: center;">Place your arm in the BP machine and press Start</h3>
+                    </p>
+                </div>
+            </div>
+            <div id="buttons" class="buttonsDiv">
+              <button id="cancelButton" class="button red navButton" onmousedown="javascript:window.location='/';">
+                <span>Cancel</span>
+              </button>
+              <button id="nextButton" class="button green navButton" onmousedown="startReading()">
+                <span>Start</span>
+              </button>
+            </div>
+        </div>  
+    </body>
+</html>

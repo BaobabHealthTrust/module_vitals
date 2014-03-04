@@ -1,0 +1,8 @@
+db/bpkiosk.db
+doc/*
+log/*
+tmp/*
+vendor/cache/*gem
+.project
+Gemfile.lock
+
