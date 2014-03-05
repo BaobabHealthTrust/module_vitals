@@ -1,4 +1,5 @@
 require "rest-client"
+require "socket"
 
 class VitalsController < ApplicationController
 
@@ -221,10 +222,27 @@ class VitalsController < ApplicationController
   
     @params = params["fl"].strip.split(" ") rescue []
     
-    # @equipment = YAML.load_file("#{Rails.root}/config/equipment.yml")
-  
     @rules = YAML.load_file("#{Rails.root}/public/rules/vitals.yml")
         
+    remote_port_is_open = port_open?(request.remote_host.strip, 3000, 10)
+       
+    if !remote_port_is_open 
+      questions = {}
+      
+      @rules["questions"].each do |key, value|
+      
+        value.delete("equipment_url") if !value["equipment_url"].nil?
+      
+        questions[key] = value
+      
+      end
+      
+      @rules["questions"] = questions 
+       
+    end
+       
+    # raise @rules.to_yaml
+       
     render "rules/rules", :layout => false
   end
 
@@ -749,7 +767,7 @@ class VitalsController < ApplicationController
     
     result = RestClient.get("http://#{request.remote_host.strip}:3000/#{params[:f]}?t=#{Time.now.to_i}") if !params[:f].nil?
     
-    render :json => result  
+    render :json => result
   end
   
   def readings
@@ -767,6 +785,25 @@ class VitalsController < ApplicationController
     render :layout => false
   end
   
+  def port_open?(ip, port, timeout)  
+    start_time = Time.now  
+    
+    current_time = start_time  
+    while (current_time - start_time) <= timeout  
+      begin  
+        TCPSocket.new(ip, port)
+          
+        return true          
+      rescue Errno::ECONNREFUSED  
+        sleep 0.1  
+      end  
+      
+      current_time = Time.now  
+    end  
+    
+    return false  
+  end
+ 
 protected
   
   def check_login
