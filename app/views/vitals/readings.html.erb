@@ -1,0 +1,140 @@
+<html>
+    <head>
+        <title>Registration</title>
+        <script type="text/javascript" language="javascript" src="/touchscreentoolkit/lib/javascripts/touchScreenToolkit.js" defer  ></script>
+        <script type="text/javascript" language="javascript" src="/javascripts/Chart.js" ></script>
+        <script type="text/javascript">
+          <!--
+          
+            var systolic = null;
+            var diastolic = null;
+            var pulse = null;
+          
+		        var lineChartData = {
+			        labels : [],
+			        datasets : [
+				        {
+					        fillColor : "rgba(220,220,220,0.5)",
+					        strokeColor : "rgba(220,220,220,1)",
+					        pointColor : "rgba(220,220,220,1)",
+					        pointStrokeColor : "#fff",
+					        data : []
+				        },
+				        {
+					        fillColor : "rgba(151,187,205,0.5)",
+					        strokeColor : "rgba(151,187,205,1)",
+					        pointColor : "rgba(151,187,205,1)",
+					        pointStrokeColor : "#fff",
+					        data : []
+				        }
+			        ]
+			
+		        }
+
+            function ajaxReq(url) {
+                var httpRequest = new XMLHttpRequest();
+                httpRequest.onreadystatechange = function() {
+                    handleReq(httpRequest);
+                };
+                try {                            
+                    httpRequest.open('GET', url, true);
+                    httpRequest.send(null);
+                } catch(e){
+                }
+            }
+
+            function handleReq(aXMLHttpRequest) {    
+                if (!aXMLHttpRequest) {
+                  showMessage("Sorry, there was an error!", false, false);
+                  
+                  __$("messageBar").style.left = (document.body.offsetWidth / 2) - (__$("messageBar").offsetWidth / 2);
+                  
+                  return "error";
+                }
+
+                if (aXMLHttpRequest.readyState == 4 && (aXMLHttpRequest.status == 200 || aXMLHttpRequest.status == 304)) {
+                    var result = JSON.parse(aXMLHttpRequest.responseText);
+                    
+                    if(result["pulse_env"] != null){
+                      var size = result["pulse_env"].length;
+                      
+                      systolic = result["systolic"];
+                      diastolic = result["diastolic"];
+                      pulse = result["pulse"];
+                      
+                      if(__$("bp")){
+                        __$("bp").innerHTML = result["systolic"] + "/" + result["diastolic"];
+                      }
+                      
+                      if(__$("pulse")){
+                        __$("pulse").innerHTML = result["pulse"] + " / min";
+                      }
+                      
+                      for(var i = 0; i < size; i++){
+                        lineChartData.labels.push(i + 1);
+                        
+                        lineChartData.datasets[0].data.push(result["pulse_env"][i][0]);
+                        
+                        lineChartData.datasets[1].data.push(result["pulse_env"][i][1]);
+                      }
+                    }
+                    
+                    var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
+                }
+            }
+          
+          //-->
+        </script>
+    </head>
+    <body onload="ajaxReq('/query_json?f=display_bp')">
+        <div id="content">
+            <div>
+                <div id="helpText" class="helpTextClass1" style="margin: auto;">
+                    <h3 style="text-align: center;font-size: 2.5em; margin-bottom: 0px;">
+                        Readings
+                    </h3>
+                    <table style="margin: auto; font-size: 2em;" cellspacing="10">
+                      <tr>
+                        <td style="width: 175px; font-weight: bold;">
+                          BP
+                        </td>
+                        <td style="width: 15px; font-weight: bold;">
+                          :
+                        </td>
+                        <td id="bp">
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="font-weight: bold;">
+                          Pulse Rate
+                        </td>
+                        <td style="width: 15px; font-weight: bold;">
+                          :
+                        </td>
+                        <td id="pulse">
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="3">
+                          <canvas id="canvas" height="400" width="600"></canvas>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th colspan="3" style="font-size: 30px; font-weight: normal;">
+                          Pulse Envelope
+                        </th>
+                      </tr>
+                    </table>
+                    
+                </div>
+            </div>
+            <div id="buttons" class="buttonsDiv">
+                <button id="nextButton" class="button green navButton" onmousedown="window.parent.removeExtraPage(systolic, diastolic, pulse);  window.parent.gotoNextPage();">
+                    <span>Done</span>
+                </button>
+            </div>
+        </div>  
+    </body>
+</html>

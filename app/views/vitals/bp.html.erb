@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Registration</title>
+        <script type="text/javascript" language="javascript" src="/touchscreentoolkit/lib/javascripts/touchScreenToolkit.js" defer  ></script>
+    </head>
+    <body>
+        <div id="content">
+            <div>
+                <div id="helpText0" class="helpTextClass" style="margin: auto;">
+                    <h3 style="text-align: center;">
+                        Welcome to the self-service blood pressure tracker.
+                    </h3>
+                    <p style="text-align: center;">
+                        This machine can track your blood pressure over repeated visits.
+                    </p>
+                    <p style="text-align: center;">
+                        Press Next to continue ...
+                    </p>
+                </div>
+            </div>
+            <div id="buttons" class="buttonsDiv">
+                <button id="cancelButton" class="button red navButton" onmousedown="javascript:window.parent.location='/patient';">
+                  <span>Cancel</span>
+                </button>
+                <button id="nextButton" class="button green navButton" onmousedown="javascript:window.location='/vitals/read';">
+                    <span>Next</span>
+                </button>
+            </div>
+        </div>  
+    </body>
+</html>

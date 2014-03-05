@@ -2,9 +2,9 @@ require "rest-client"
 
 class VitalsController < ApplicationController
 
-  before_filter :check_login, :except => [:login, :logout, :authenticate, :verify_location]
+  before_filter :check_login, :except => [:login, :logout, :authenticate, :verify_location, :query]
   
-  before_filter :check_location, :except => [:login, :logout, :authenticate, :verify_location, :location]    
+  before_filter :check_location, :except => [:login, :logout, :authenticate, :verify_location, :location, :query]    
   
   def index    
     render :layout => false
@@ -221,7 +221,7 @@ class VitalsController < ApplicationController
   
     @params = params["fl"].strip.split(" ") rescue []
     
-    @equipment = YAML.load_file("#{Rails.root}/config/equipment.yml")
+    # @equipment = YAML.load_file("#{Rails.root}/config/equipment.yml")
   
     @rules = YAML.load_file("#{Rails.root}/public/rules/vitals.yml")
         
@@ -734,6 +734,37 @@ class VitalsController < ApplicationController
        
     redirect_to "/" and return
        
+  end
+  
+  def query
+    result = ""
+    
+    result = RestClient.get("http://#{request.remote_host.strip}:3000/#{params[:f]}?t=#{Time.now.to_i}") if !params[:f].nil?
+    
+    render :text => result.to_s
+  end
+  
+  def query_json
+    result = ""
+    
+    result = RestClient.get("http://#{request.remote_host.strip}:3000/#{params[:f]}?t=#{Time.now.to_i}") if !params[:f].nil?
+    
+    render :json => result  
+  end
+  
+  def readings
+    @referrer = request.remote_host.strip
+    render :layout => false
+  end
+  
+  def read
+    @referrer = request.remote_host.strip
+    render :layout => false
+  end
+  
+  def bp
+    @referrer = request.remote_host.strip
+    render :layout => false
   end
   
 protected

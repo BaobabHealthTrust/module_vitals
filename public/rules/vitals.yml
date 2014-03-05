@@ -18,6 +18,10 @@ title: Patient Vitals
 
 encounter_type: Vitals
   
+js_files: vitals
+
+css_files: vitals
+  
 questions:
   1:
     question: Temperature Reading
@@ -34,6 +38,28 @@ questions:
     name: 5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     
   2:
+    question: Systolic Pressure
+    condition: measureBP == true
+    param: bp
+    field_type: number
+    tt_pageStyleClass: NumbersWithUnknownAndDecimal
+    name: 5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    id: systolic_pressure
+    tt_onLoad: if(__$('systolic_pressure').getAttribute('equipment_url')) {__$('keyboard').style.display = 'none'; if(__$('diastolic_pressure')){__$('diastolic_pressure').setAttribute('condition', false)}; if(__$('pulse_rate')){__$('pulse_rate').setAttribute('condition', false)}; loadExtraPage(__$('systolic_pressure').getAttribute('equipment_url'))};
+    tt_onUnLoad: __$('keyboard').style.display = 'block'; if(__$('extraPage')) document.body.removeChild(__$('extraPage'));
+    equipment_url: /vitals/bp
+    
+  3:
+    question: Diastolic Pressure
+    condition: measureBP == true
+    param: bp
+    field_type: number
+    tt_pageStyleClass: NumbersWithUnknownAndDecimal
+    id: diastolic_pressure
+    tt_onLoad: __$('helpText' + tstCurrentPage).innerHTML += ' (' + __$('systolic_pressure').value + '/?)' 
+    name: 5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    
+  4:
     question: Pulse Rate
     max: 50
     min: 30
@@ -44,27 +70,9 @@ questions:
     condition: measurePulse == true
     param: pulse_rate
     field_type: number
+    id: pulse_rate
     tt_pageStyleClass: NumbersWithUnknownAndDecimal
     name: 5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-    
-  3:
-    question: Systolic Pressure
-    condition: measureBP == true
-    param: bp
-    field_type: number
-    tt_pageStyleClass: NumbersWithUnknownAndDecimal
-    name: 5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-    id: systolic_pressure
-    
-  4:
-    question: Diastolic Pressure
-    condition: measureBP == true
-    param: bp
-    field_type: number
-    tt_pageStyleClass: NumbersWithUnknownAndDecimal
-    id: diastolic_pressure
-    tt_onLoad: __$('helpText' + tstCurrentPage).innerHTML += ' (' + __$('systolic_pressure').value + '/?)' 
-    name: 5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     
   5:
     question: Respiratory Rate
@@ -85,7 +93,7 @@ questions:
     id: weight
     tt_onLoad: if(__$('weight').getAttribute('equipment_url')) {__$('keyboard').style.display = 'none'; checkReading('touchscreenInput' + tstCurrentPage)};
     tt_onUnLoad: __$('keyboard').style.display = 'block';
-    equipment_url: http://127.0.0.1:3005/weight
+    equipment_url: /query?f=weight
     
   7:
     question: Height (cm)
@@ -97,7 +105,7 @@ questions:
     id: height
     tt_onLoad: if(__$('height').getAttribute('equipment_url')) {__$('keyboard').style.display = 'none'; checkReading('touchscreenInput' + tstCurrentPage)};
     tt_onUnLoad: __$('keyboard').style.display = 'block';
-    equipment_url: http://127.0.0.1:3005/height
+    equipment_url: /query?f=height
     
   8:
     question: Oxygen Saturation

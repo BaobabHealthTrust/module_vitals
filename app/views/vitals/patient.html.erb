@@ -704,6 +704,8 @@
             
         var p = [];              
         
+        var atLeastOneOff = false;
+        
         for(var key in order){
         
           var pos = parseInt(order[key]);
@@ -716,12 +718,15 @@
             d[pos].push([data.labels[i], data.datasets[pos].data[i]]);
           }
            
+          if(typeof(except) != "undefined" && !except[pos])
+              atLeastOneOff = true;
+           
           var set = {
             data: d[pos],
             lines: {
               show: (typeof(except) != "undefined" ? (except[pos] ? true : false) : false), 
               fill: true,
-              points: true 
+              points: (typeof(except) != "undefined" ? (except[pos] ? true : false) : false) 
             },
             color: data.datasets[pos].color
           }
@@ -730,6 +735,9 @@
           
         }
     
+        // Clear the parent DIV preparing for new material
+        __$("placeholder").innerHTML = "";
+
         $.plot($("#placeholder"),
            p,
            { 
@@ -742,10 +750,17 @@
                         } ],
                legend: { position: 'sw' },
                series: {
-                  lines: { show: true },
-                  points: { show: true }
+                  lines: { show: (!atLeastOneOff ? true : false) },
+                  points: { show: (!atLeastOneOff ? true : false) }
                }
            });
+           
+        var canvas = __$("placeholder").getElementsByTagName("canvas")[0];
+
+        var base64 = canvas.toDataURL();
+        // ..  and stuff that PNG into the element's background
+        canvas.style.backgroundImage = "url("+base64+")";
+
     }
     
     function subtract(src, sub){

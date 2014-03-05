@@ -3,8 +3,20 @@
   <head>
     <title>Create Vitals</title>
     
+    <% if !@rules["js_files"].nil? %>      
+      <% @rules["js_files"].split(",").each do |key| %>      
+    <%= "<link rel='stylesheet' href='/stylesheets/#{key.strip}.css' type='text/css'>" if key.strip.length > 0 %>      
+      <% end              
+    end %>
+      
     <script type='text/javascript' language='javascript' src='/touchscreentoolkit/lib/javascripts/touchScreenToolkit.js' defer  ></script>
     
+    <% if !@rules["js_files"].nil? %>      
+      <% @rules["js_files"].split(",").each do |key| %>      
+    <%= "<script type='text/javascript' language='javascript' src='/javascripts/#{key.strip}.js' defer  ></script>" if key.strip.length > 0 %>      
+      <% end              
+    end %>
+                  
     <script type='text/javascript' defer>   
      
       <% if !@rules["parameters"].nil? %>      
@@ -24,7 +36,7 @@
             return;
           }
           
-          var url = obj.getAttribute('equipment_url');
+          var url = obj.getAttribute('equipment_url') + (obj.getAttribute('equipment_url').match(/\?/) ? "&" : "?") + "t=" + (new Date()).getTime();
             
           if(url == null) return;
               
