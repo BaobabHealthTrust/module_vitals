@@ -36,6 +36,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.vitals "/query_json", :controller => 'vitals', :action => 'query_json'
   
+  map.vitals "/void", :controller => 'vitals', :action => 'void'
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

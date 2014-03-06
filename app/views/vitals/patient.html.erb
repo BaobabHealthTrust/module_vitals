@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/touchscreentoolkit/lib/stylesheets/touch-fancy.css" />
     <script language="javascript" type="text/javascript" src="/javascripts/flot/jquery.js"></script>
     <script language="javascript" type="text/javascript" src="/javascripts/flot/jquery.flot.js"></script>
+    <script language="javascript" type="text/javascript" src="/touchscreentoolkit/lib/javascripts/standard.js"></script>
     <style type="text/css">
       body {
         font-family: Verdana;
@@ -209,7 +210,10 @@
                       <td align="center" colspan="2">
                         <table>
                           <tr>
-                            <td style="padding-right: 10px; cursor: pointer;">
+                            <td style="padding-right: 10px; cursor: pointer;" onclick="confirmRecordDeletion('Do you really want to delete this weight?', 'frmweight')">
+                              <% form_tag("/void", {:id => "frmweight"}) do -%>
+                                <%= hidden_field_tag("obs", "#{@target["Weight (kg)"]["uuid"] rescue nil}") %>
+                              <% end %>
                               <img src="/images/cancel_flat_small_red.png" height="25" tag="weight" />
                             </td>
                             <td style="width: 180px;">
@@ -270,8 +274,11 @@
                       <td align="center" colspan="2">
                         <table>
                           <tr>
-                            <td style="padding-right: 10px; cursor: pointer;">
-                              <img src="/images/cancel_flat_small_red.png" height="25" tag="weight" />
+                            <td style="padding-right: 10px; cursor: pointer;" onclick="confirmRecordDeletion('Do you really want to delete this height?', 'frmheight')">
+                              <% form_tag("/void", {:id => "frmheight"}) do -%>
+                                <%= hidden_field_tag("obs", "#{@target["Height (cm)"]["uuid"] rescue nil}") %>
+                              <% end %>
+                              <img src="/images/cancel_flat_small_red.png" height="25" tag="height" />
                             </td>
                             <td style="width: 180px;">
                               <i style="font-size: 0.8em;"><%= (@target["Height (cm)"]["date"].to_time.strftime("%d/%b/%Y %H:%M") rescue "&nbsp;") %></i>
@@ -345,7 +352,12 @@
                       <td align="center" colspan="2">
                         <table>
                           <tr>
-                            <td style="padding-right: 10px; cursor: pointer;">
+                            <td style="padding-right: 10px; cursor: pointer;" onclick="confirmRecordDeletion('Do you really want to delete readings?', 'frmbp')">
+                              <% form_tag("/void", {:id => "frmbp"}) do -%>
+                                <%= hidden_field_tag("obs[]", "#{@target["SYSTOLIC BLOOD PRESSURE"]["uuid"] rescue nil}") %>
+                                
+                                <%= hidden_field_tag("obs[]", "#{@target["DIASTOLIC BLOOD PRESSURE"]["uuid"] rescue nil}") %>
+                              <% end %>
                               <img src="/images/cancel_flat_small_red.png" height="25" tag="weight" />
                             </td>
                             <td style="width: 150px;">
@@ -417,8 +429,11 @@
                       <td align="center" colspan="2">
                         <table>
                           <tr>
-                            <td style="padding-right: 10px; cursor: pointer;">
-                              <img src="/images/cancel_flat_small_red.png" height="25" tag="weight" />
+                            <td style="padding-right: 10px; cursor: pointer;" onclick="confirmRecordDeletion('Do you really want to delete this reading?', 'frmtemp')">
+                              <% form_tag("/void", {:id => "frmtemp"}) do -%>
+                                <%= hidden_field_tag("obs", "#{@target["Temperature (C)"]["uuid"] rescue nil}") %>
+                              <% end %>
+                              <img src="/images/cancel_flat_small_red.png" height="25" tag="temp" />
                             </td>
                             <td style="width: 180px;">
                               <i style="font-size: 0.8em;"><%= (@target["Temperature (C)"]["date"].to_time.strftime("%d/%b/%Y %H:%M") rescue "&nbsp;") %></i>
@@ -479,7 +494,10 @@
                       <td align="center" colspan="2">
                         <table>
                           <tr>
-                            <td style="padding-right: 10px; cursor: pointer;">
+                            <td style="padding-right: 10px; cursor: pointer;" onclick="confirmRecordDeletion('Do you really want to delete this reading?', 'frmblood')">
+                              <% form_tag("/void", {:id => "frmblood"}) do -%>
+                                <%= hidden_field_tag("obs", "#{@target["Blood oxygen saturation"]["uuid"] rescue nil}") %>
+                              <% end %>
                               <img src="/images/cancel_flat_small_red.png" height="25" tag="weight" />
                             </td>
                             <td style="width: 180px;">
@@ -540,7 +558,10 @@
                       <td align="center" colspan="2">
                         <table>
                           <tr>
-                            <td style="padding-right: 10px; cursor: pointer;">
+                            <td style="padding-right: 10px; cursor: pointer;" onclick="confirmRecordDeletion('Do you really want to delete this reading?', 'frmpulse')">
+                              <% form_tag("/void", {:id => "frmpulse"}) do -%>
+                                <%= hidden_field_tag("obs", "#{@target["Pulse"]["uuid"] rescue nil}") %>
+                              <% end %>
                               <img src="/images/cancel_flat_small_red.png" height="25" tag="weight" />
                             </td>
                             <td style="width: 180px;">
@@ -601,7 +622,10 @@
                       <td align="center" colspan="2">
                         <table>
                           <tr>
-                            <td style="padding-right: 10px; cursor: pointer;">
+                            <td style="padding-right: 10px; cursor: pointer;" onclick="confirmRecordDeletion('Do you really want to delete this reading?', 'frmresp')">
+                              <% form_tag("/void", {:id => "frmresp"}) do -%>
+                                <%= hidden_field_tag("obs", "#{@target["Respiratory rate"]["uuid"] rescue nil}") %>
+                              <% end %>
                               <img src="/images/cancel_flat_small_red.png" height="25" tag="weight" />
                             </td>
                             <td style="width: 180px;">
@@ -680,6 +704,8 @@
 	<script>
     <!--
     
+    jQuery.noConflict();
+    
     var selected = {};
     
     var source = <%= @data.to_json %>;
@@ -738,7 +764,7 @@
         // Clear the parent DIV preparing for new material
         __$("placeholder").innerHTML = "";
 
-        $.plot($("#placeholder"),
+        jQuery.plot(jQuery("#placeholder"),
            p,
            { 
                xaxes: [ { mode: 'time' } ],

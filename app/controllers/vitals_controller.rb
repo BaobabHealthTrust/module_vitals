@@ -61,6 +61,42 @@ class VitalsController < ApplicationController
     render :layout => false    
   end
 
+  def void
+    
+    if params[:obs].class.to_s.downcase.strip == "array"
+    
+      params[:obs].each do |obs|
+      
+        res = RestClient.delete("http://#{@openmrslink}/ws/rest/v1/obs/#{obs}", {:content_type => :json, :Cookie => "JSESSIONID=#{cookies[:jsessionid]}", :accept => :json}) rescue nil
+        
+        if res.nil?
+        
+          flash[:error] = "Data void error!"
+        
+          redirect_to "/patient" and return
+        
+        end      
+    
+      end
+    
+    else
+      res = RestClient.delete("http://#{@openmrslink}/ws/rest/v1/obs/#{params[:obs]}", {:content_type => :json, :Cookie => "JSESSIONID=#{cookies[:jsessionid]}", :accept => :json}) rescue nil
+      
+      if res.nil?
+      
+        flash[:error] = "Data void error!"
+      
+        redirect_to "/patient" and return
+      
+      end      
+    
+    end
+    
+    flash[:notice] = "Record voided!"
+        
+    redirect_to "/patient" and return
+  end
+
   def patient
     @json = {}
     
@@ -118,13 +154,17 @@ class VitalsController < ApplicationController
              @target[o["concept"]["display"]]["date"] = e 
           
              @target[o["concept"]["display"]]["value"] = (o["display"][o["concept"]["display"].strip.length + 1, o["display"].length]).strip.to_f
+             
+             @target[o["concept"]["display"]]["uuid"] = o["uuid"]
                 
           elsif @target[o["concept"]["display"]]["date"].to_time < e.to_time
             
              @target[o["concept"]["display"]]["date"] = e           
              
              @target[o["concept"]["display"]]["value"] = (o["display"][o["concept"]["display"].strip.length + 1, o["display"].length]).strip.strip.to_f
-                      
+               
+             @target[o["concept"]["display"]]["uuid"] = o["uuid"]
+                       
           end
           
           @encounters[e][o["concept"]["display"]] = (o["display"][o["concept"]["display"].strip.length + 1, o["display"].length]).strip
@@ -214,6 +254,8 @@ class VitalsController < ApplicationController
       @presentation[o] = i
       i = i + 1
     }
+    
+    # raise @target.to_yaml
     
     render :layout => false
   end
