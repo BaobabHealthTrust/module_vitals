@@ -38,6 +38,22 @@ ActionController::Routing::Routes.draw do |map|
   
   map.vitals "/void", :controller => 'vitals', :action => 'void'
   
+  # Rest Routes to be replaced by OpenMRS WebServices
+  
+  # map.encounter "/", :controller => 'ws/rest/v1/encounter', :action => '__get', :method => :get
+  
+  map.namespace :ws do |ws|
+    ws.namespace :rest do |rest|
+      rest.namespace :v1 do |v1|
+        
+        ["encounter", "encountertype", "patient", "obs", "user", "session", "location"].each do |controller|
+          v1.resources controller.to_sym
+        end
+  
+      end
+    end
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
