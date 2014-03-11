@@ -19,7 +19,7 @@ class VitalsController < ApplicationController
     @today = {"Vitals" => "-"} 
     @year = {"Vitals" => "-"} 
     @ever = {"Vitals" => "-"}
-    
+       
     res = RestClient.get("http://#{@openmrslink}/ws/rest/v1/encountertype?q=vitals", {:Cookie => "JSESSIONID=#{cookies[:jsessionid]}", :accept => :json})  rescue nil
     
     if !res.nil?
@@ -126,6 +126,28 @@ class VitalsController < ApplicationController
     
     @readings = {}
     
+    @concepts_lookup = {
+        "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" => "Respiratory Rate",
+        "5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" => "Temperature (C)",
+        "5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" => "SYSTOLIC BLOOD PRESSURE",
+        "5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" => "DIASTOLIC BLOOD PRESSURE",
+        "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" => "Weight (kg)",
+        "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" => "Height (cm)",
+        "5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" => "Blood oxygen saturation",
+        "5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" => "Pulse"
+    }
+    
+    @reverse_lookup = {
+        "Respiratory Rate" => "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "Temperature (C)" => "5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "SYSTOLIC BLOOD PRESSURE" => "5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "DIASTOLIC BLOOD PRESSURE" => "5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "Weight (kg)" => "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "Height (cm)" => "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "Blood oxygen saturation" => "5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "Pulse" => "5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    }
+    
     if !encs.nil?    
       jsonenc = JSON.parse(encs) rescue {}   
       
@@ -137,9 +159,9 @@ class VitalsController < ApplicationController
           
           @months[e.to_time.strftime("%Y-%m-%d").to_time.to_i * 1000] = e.to_time.strftime("%b/%y") if @months[e.to_time.strftime("%Y-%m-%d").to_time.to_i * 1000].nil?
           
-          @readings[o["concept"]["display"]] = {} if @readings[o["concept"]["display"]].nil?
+          @readings[o["concept"]["uuid"]] = {} if @readings[o["concept"]["uuid"]].nil?
           
-          @readings[o["concept"]["display"]][e.to_time.strftime("%Y-%m-%d").to_time.to_i * 1000] = (o["display"][o["concept"]["display"].strip.length + 1, o["display"].length]).strip.to_f
+          @readings[o["concept"]["uuid"]][e.to_time.strftime("%Y-%m-%d").to_time.to_i * 1000] = (o["display"][o["concept"]["display"].strip.length + 1, o["display"].length]).strip.to_f
           
           @source[o["concept"]["display"]] = {} if @source[o["concept"]["display"]].nil?
           
@@ -147,23 +169,23 @@ class VitalsController < ApplicationController
           
           @encounters[e] = {} if @encounters[e].nil?; 
           
-          @target[o["concept"]["display"]] = {} if @target[o["concept"]["display"]].nil?
+          @target[@concepts_lookup[o["concept"]["uuid"]]] = {} if @target[@concepts_lookup[o["concept"]["uuid"]]].nil?
           
-          if @target[o["concept"]["display"]]["date"].nil?
+          if @target[@concepts_lookup[o["concept"]["uuid"]]]["date"].nil?
           
-             @target[o["concept"]["display"]]["date"] = e 
+             @target[@concepts_lookup[o["concept"]["uuid"]]]["date"] = e 
           
-             @target[o["concept"]["display"]]["value"] = (o["display"][o["concept"]["display"].strip.length + 1, o["display"].length]).strip.to_f
+             @target[@concepts_lookup[o["concept"]["uuid"]]]["value"] = (o["display"][o["concept"]["display"].strip.length + 1, o["display"].length]).strip.to_f
              
-             @target[o["concept"]["display"]]["uuid"] = o["uuid"]
+             @target[@concepts_lookup[o["concept"]["uuid"]]]["uuid"] = o["uuid"]
                 
-          elsif @target[o["concept"]["display"]]["date"].to_time < e.to_time
+          elsif @target[@concepts_lookup[o["concept"]["uuid"]]]["date"].to_time < e.to_time
             
-             @target[o["concept"]["display"]]["date"] = e           
+             @target[@concepts_lookup[o["concept"]["uuid"]]]["date"] = e           
              
-             @target[o["concept"]["display"]]["value"] = (o["display"][o["concept"]["display"].strip.length + 1, o["display"].length]).strip.strip.to_f
+             @target[@concepts_lookup[o["concept"]["uuid"]]]["value"] = (o["display"][o["concept"]["display"].strip.length + 1, o["display"].length]).strip.strip.to_f
                
-             @target[o["concept"]["display"]]["uuid"] = o["uuid"]
+             @target[@concepts_lookup[o["concept"]["uuid"]]]["uuid"] = o["uuid"]
                        
           end
           
@@ -191,7 +213,7 @@ class VitalsController < ApplicationController
     }
     
     presets = {
-      "Respiratory rate" => {
+      "Respiratory Rate" => {
         "color" => "#b76f43",
 				"data" => []
       }, 
@@ -231,21 +253,23 @@ class VitalsController < ApplicationController
     
     @readings.each do |concept, members|
       
-      next if presets[concept].nil?
+      next if presets[@concepts_lookup[concept]].nil?
       
-      @order << concept
+      @order << @concepts_lookup[concept]
       
-      previous[concept] = 0 if previous[concept].nil?
+      previous[@concepts_lookup[concept]] = 0 if previous[@concepts_lookup[concept]].nil?
       
       @data[:labels].each{|month|        
-         presets[concept]["data"] << (members[month].nil? ? previous[concept] : members[month])
+         presets[@concepts_lookup[concept]]["data"] << (members[month].nil? ? previous[@concepts_lookup[concept]] : members[month])
          
-        previous[concept] = members[month] if !members[month].nil?      
+        previous[@concepts_lookup[concept]] = members[month] if !members[month].nil?      
       }
       
-      @data[:datasets] << (presets[concept].nil? ? 0 : presets[concept])
+      @data[:datasets] << (presets[@concepts_lookup[concept]].nil? ? 0 : presets[@concepts_lookup[concept]])
       
     end # rescue nil
+    
+    # raise @data.to_yaml
     
     @presentation = {}
     
@@ -402,7 +426,12 @@ class VitalsController < ApplicationController
       cookies[:fullname] = json["results"][0]["person"]["display"] # rescue nil
       
       cookies[:username] = json["results"][0]["display"] # rescue nil
-
+      
+      f = File.open("#{Rails.root}/tmp/sessions/#{request.remote_ip.gsub(/\./, '_')}", "w+")
+      
+      f.write(cookies[:jsessionid])
+      
+      f.close      
     
       redirect_to "#{cookies[:src]}" and return
       
@@ -450,6 +479,12 @@ class VitalsController < ApplicationController
       
       cookies[:location] = json["uuid"] rescue nil
     
+      f = File.open("#{Rails.root}/tmp/sessions/#{request.remote_ip.gsub(/\./, '_')}_loc", "w+")
+      
+      f.write(cookies[:location])
+      
+      f.close      
+    
       redirect_to "#{cookies[:src]}" and return if !cookies[:src].match(/location/)
       
       redirect_to "/" and return
@@ -474,6 +509,10 @@ class VitalsController < ApplicationController
       
       cookies.delete :current_patient
   
+      File.delete("#{Rails.root}/tmp/sessions/#{request.remote_ip.gsub(/\./, '_')}") if File.exists?("#{Rails.root}/tmp/sessions/#{request.remote_ip.gsub(/\./, '_')}")
+          
+      File.delete("#{Rails.root}/tmp/sessions/#{request.remote_ip.gsub(/\./, '_')}_loc") if File.exists?("#{Rails.root}/tmp/sessions/#{request.remote_ip.gsub(/\./, '_')}_loc")
+          
       flash[:notice] = "Logged out!"
     
       redirect_to "/login" and return
@@ -511,6 +550,8 @@ class VitalsController < ApplicationController
         if !res.nil?
         
           json = JSON.parse(res) rescue {}
+        
+          # raise json.to_yaml
         
           json["results"].each do |o|
           
@@ -853,12 +894,28 @@ protected
   
     @openmrslink = YAML.load_file("#{Rails.root}/config/application.yml")["#{Rails.env}"]["openmrs_url"] rescue nil
     
-    redirect_to "/login" if cookies[:jsessionid].nil?
+    f = File.open("#{Rails.root}/tmp/sessions/#{request.remote_ip.gsub(/\./, '_')}", "r") rescue nil
+    
+    session_id = f.read rescue nil
+    
+    f.close rescue nil
+      
+    cookies[:jsessionid] = session_id if !session_id.blank?
+      
+    redirect_to "/login" if session_id.blank?
   end
 
   def check_location
   
-    redirect_to "/location" if cookies[:location].nil?
+    f = File.open("#{Rails.root}/tmp/sessions/#{request.remote_ip.gsub(/\./, '_')}_loc", "r") rescue nil
+    
+    location = f.read rescue nil
+    
+    f.close rescue nil
+      
+    cookies[:location] = location if !location.blank?
+      
+    redirect_to "/location" if location.blank?
   
   end
 
