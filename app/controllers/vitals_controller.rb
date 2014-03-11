@@ -127,7 +127,7 @@ class VitalsController < ApplicationController
     @readings = {}
     
     @concepts_lookup = {
-        "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" => "Respiratory Rate",
+        "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" => "Respiratory rate",
         "5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" => "Temperature (C)",
         "5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" => "SYSTOLIC BLOOD PRESSURE",
         "5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" => "DIASTOLIC BLOOD PRESSURE",
@@ -138,7 +138,7 @@ class VitalsController < ApplicationController
     }
     
     @reverse_lookup = {
-        "Respiratory Rate" => "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "Respiratory rate" => "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "Temperature (C)" => "5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "SYSTOLIC BLOOD PRESSURE" => "5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "DIASTOLIC BLOOD PRESSURE" => "5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -213,7 +213,7 @@ class VitalsController < ApplicationController
     }
     
     presets = {
-      "Respiratory Rate" => {
+      "Respiratory rate" => {
         "color" => "#b76f43",
 				"data" => []
       }, 
@@ -332,21 +332,8 @@ class VitalsController < ApplicationController
       "5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     ]
   
-    # raise params.to_yaml
-  
     query = ActiveSupport::OrderedHash.new
   
-=begin
-    query = {     
-      "patient" => cookies[:current_patient],     
-      "encounterDatetime" => (cookies[:date].to_date rescue Date.today).strftime("%Y-%m-%d"),     
-      "location" => cookies[:location_name],     
-      "encounterType" => params[:encounter_type],     
-      "provider" => cookies[:user_person],     
-      "obs" => []    
-    }
-=end 
-
     query["patient"] = cookies[:current_patient]     
     query["encounterDatetime"] = (cookies[:date].to_date rescue Date.today).strftime("%Y-%m-%d")     
     query["location"] = cookies[:location_name]     
@@ -369,11 +356,7 @@ class VitalsController < ApplicationController
     
     end
     
-    # raise query.to_json
-    
     res = RestClient.post("http://#{@openmrslink}/ws/rest/v1/encounter", query.to_json, {:content_type => :json, :Cookie => "JSESSIONID=#{cookies[:jsessionid]}", :accept => :json}) #  rescue nil
-    
-    # raise res.inspect
     
     if res.nil?
     
