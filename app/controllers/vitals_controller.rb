@@ -5,7 +5,7 @@ class VitalsController < ApplicationController
 
   before_filter :check_login, :except => [:login, :logout, :authenticate, :verify_location, :query]
   
-  before_filter :check_location, :except => [:login, :logout, :authenticate, :verify_location, :location, :query]    
+  # before_filter :check_location, :except => [:login, :logout, :authenticate, :verify_location, :location, :query]    
   
   def index    
     render :layout => false
@@ -456,19 +456,21 @@ class VitalsController < ApplicationController
     
       json = JSON.parse(res) rescue {}
     
+      # raise json["uuid"].inspect
+      
       cookies[:parent_location] = json["parentLocation"]["display"] rescue nil
       
       cookies[:location_name] = json["display"] rescue nil
       
-      cookies[:location] = json["uuid"] rescue nil
+      cookies[:location] = json["uuid"] # rescue nil
     
       f = File.open("#{Rails.root}/tmp/sessions/#{request.remote_ip.gsub(/\./, '_')}_loc", "w+")
       
-      f.write(cookies[:location])
+      f.write(params[:location])
       
       f.close      
     
-      redirect_to "#{cookies[:src]}" and return if !cookies[:src].match(/location/)
+      # redirect_to "#{cookies[:src]}" and return if !cookies[:src].match(/location/)
       
       redirect_to "/" and return
     
@@ -873,7 +875,7 @@ class VitalsController < ApplicationController
 protected
   
   def check_login
-    cookies[:src] = request.path
+    # cookies[:src] = request.path
   
     @openmrslink = YAML.load_file("#{Rails.root}/config/application.yml")["#{Rails.env}"]["openmrs_url"] rescue nil
     
