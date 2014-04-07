@@ -1,0 +1,1008 @@
+<html>
+    <head>
+        <title>Vitals Kiosk</title>
+        <style type='text/css'>
+            body {
+                overflow: hidden;
+                font-family: 'Nimbus Sans L', 'Arial Narrow', sans-serif;
+                -moz-user-select: none;
+            }
+            
+            .input {
+                border: 1px solid #5ca6c4 !important;
+                background-color: #eee;
+                font-size: 1em; 
+                width: 100%;
+                height: 100%;
+                padding: 10px;
+                border-radius: 10px;   
+                -moz-user-select: none;             
+            }
+            
+            button {
+                font-size: 1em;
+                padding: 15px;
+                min-width: 250px;
+                cursor: pointer;
+                min-height: 100px;
+                border-radius: 15px !important;
+                margin: 10px;
+            }
+            
+            button:active{
+                background-color: #ffc579 !important; 
+                background-image: -webkit-gradient(linear, left top, left bottom, from(#ffc579), to(#fb9d23)) !important;
+                background-image: -webkit-linear-gradient(top, #ffc579, #fb9d23) !important;
+                background-image: -moz-linear-gradient(top, #ffc579, #fb9d23) !important;
+                background-image: -ms-linear-gradient(top, #ffc579, #fb9d23) !important;
+                background-image: -o-linear-gradient(top, #ffc579, #fb9d23) !important;
+                background-image: linear-gradient(to bottom, #ffc579, #fb9d23);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#ffc579, endColorstr=#fb9d23) !important;
+            }
+
+            .button_refresh{
+                 border:1px solid #7eb9d0; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-size:28px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
+                 background-color: #a7cfdf; background-image: -webkit-gradient(linear, left top, left bottom, from(#a7cfdf), to(#23538a));
+                 background-image: -webkit-linear-gradient(top, #a7cfdf, #23538a);
+                 background-image: -moz-linear-gradient(top, #a7cfdf, #23538a);
+                 background-image: -ms-linear-gradient(top, #a7cfdf, #23538a);
+                 background-image: -o-linear-gradient(top, #a7cfdf, #23538a);
+                 background-image: linear-gradient(to bottom, #a7cfdf, #23538a);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#a7cfdf, endColorstr=#23538a);
+            }
+
+            .button_refresh:hover{
+                 border:1px solid #5ca6c4;
+                 background-color: #82bbd1; background-image: -webkit-gradient(linear, left top, left bottom, from(#82bbd1), to(#193b61));
+                 background-image: -webkit-linear-gradient(top, #82bbd1, #193b61);
+                 background-image: -moz-linear-gradient(top, #82bbd1, #193b61);
+                 background-image: -ms-linear-gradient(top, #82bbd1, #193b61);
+                 background-image: -o-linear-gradient(top, #82bbd1, #193b61);
+                 background-image: linear-gradient(to bottom, #82bbd1, #193b61);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#82bbd1, endColorstr=#193b61);
+            }
+            
+            .button_start{
+                 border:1px solid #34740e; 
+                 -webkit-border-radius: 3px; 
+                 -moz-border-radius: 3px;
+                 border-radius: 3px;
+                 font-size:28px;
+                 font-family:arial, helvetica, sans-serif; 
+                 padding: 10px 10px 10px 10px; 
+                 text-decoration:none; 
+                 display:inline-block;
+                 text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+                 font-weight:bold; color: #FFFFFF;
+                 background-color: #4ba614; 
+                 background-image: -webkit-gradient(linear, left top, left bottom, from(#4ba614), to(#008c00));
+                 background-image: -webkit-linear-gradient(top, #4ba614, #008c00);
+                 background-image: -moz-linear-gradient(top, #4ba614, #008c00);
+                 background-image: -ms-linear-gradient(top, #4ba614, #008c00);
+                 background-image: -o-linear-gradient(top, #4ba614, #008c00);
+                 background-image: linear-gradient(to bottom, #4ba614, #008c00);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#4ba614, endColorstr=#008c00);
+            }
+
+            .button_start:hover{
+                 border:1px solid #224b09;
+                 background-color: #36780f; background-image: -webkit-gradient(linear, left top, left bottom, from(#36780f), to(#005900));
+                 background-image: -webkit-linear-gradient(top, #36780f, #005900);
+                 background-image: -moz-linear-gradient(top, #36780f, #005900);
+                 background-image: -ms-linear-gradient(top, #36780f, #005900);
+                 background-image: -o-linear-gradient(top, #36780f, #005900);
+                 background-image: linear-gradient(to bottom, #36780f, #005900);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#36780f, endColorstr=#005900);
+            }
+            
+            .button_stop{
+                 border:1px solid #72021c; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-size:28px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
+                 background-color: #a90329; background-image: -webkit-gradient(linear, left top, left bottom, from(#a90329), to(#6d0019));
+                 background-image: -webkit-linear-gradient(top, #a90329, #6d0019);
+                 background-image: -moz-linear-gradient(top, #a90329, #6d0019);
+                 background-image: -ms-linear-gradient(top, #a90329, #6d0019);
+                 background-image: -o-linear-gradient(top, #a90329, #6d0019);
+                 background-image: linear-gradient(to bottom, #a90329, #6d0019);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#a90329, endColorstr=#6d0019);
+            }
+
+            .button_stop:hover{
+                 border:1px solid #450111;
+                 background-color: #77021d; background-image: -webkit-gradient(linear, left top, left bottom, from(#77021d), to(#3a000d));
+                 background-image: -webkit-linear-gradient(top, #77021d, #3a000d);
+                 background-image: -moz-linear-gradient(top, #77021d, #3a000d);
+                 background-image: -ms-linear-gradient(top, #77021d, #3a000d);
+                 background-image: -o-linear-gradient(top, #77021d, #3a000d);
+                 background-image: linear-gradient(to bottom, #77021d, #3a000d);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#77021d, endColorstr=#3a000d);
+            }
+            
+            .button_disabled{
+                 border:1px solid #ccc; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-size:28px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
+                 background-color: #ccc; background-image: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
+                 background-image: -webkit-linear-gradient(top, #ccc, #999);
+                 background-image: -moz-linear-gradient(top, #ccc, #999);
+                 background-image: -ms-linear-gradient(top, #ccc, #999);
+                 background-image: -o-linear-gradient(top, #ccc, #999);
+                 background-image: linear-gradient(to bottom, #ccc, #999);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#ccc, endColorstr=#999);
+            }
+
+            .button_disabled:hover{
+                 border:1px solid #ccc;
+                 background-color: #ddd; background-image: -webkit-gradient(linear, left top, left bottom, from(#333), to(#ccc));
+                 background-image: -webkit-linear-gradient(top, #333, #ccc);
+                 background-image: -moz-linear-gradient(top, #333, #ccc);
+                 background-image: -ms-linear-gradient(top, #333, #ccc);
+                 background-image: -o-linear-gradient(top, #333, #ccc);
+                 background-image: linear-gradient(to bottom, #333, #ccc);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#333, endColorstr=#ccc);
+            }
+                       
+            #nav{
+                 background-color: #333; 
+                 background-image: -webkit-gradient(linear, left top, left bottom, from(#333), to(#999));
+                 background-image: -webkit-linear-gradient(top, #333, #999);
+                 background-image: -moz-linear-gradient(top, #333, #999);
+                 background-image: -ms-linear-gradient(top, #333, #999);
+                 background-image: -o-linear-gradient(top, #333, #999);
+                 background-image: linear-gradient(to bottom, #333, #999);
+                 filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#333, endColorstr=#999);
+            }
+
+        </style>
+        <script type='text/javascript'>
+            
+            var imgTick = 'data:image/png;base64,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';
+            
+            var imgUnTick = 'data:image/png;base64,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';
+            
+            var timerHandle, actionHandle;
+            var systolic = null;
+            var diastolic = null;
+            var pulse = null;
+            var destination = '<<destination_url>>';
+            var active = false;
+            var canRead = false;
+            
+            var target;
+            
+            var currentPage = 1;
+            
+            var questions = {
+                1:{
+                        'Systolic Pressure':null,
+                        'Diastolic Pressure':null,
+                        'Pulse Rate':null,
+                        'Builder':'buildBPPage(1)'
+                  },
+                2:{
+                        'Section topic':'Measured Weight & Height',
+                        'Weight':null,
+                        'Height':null,
+                        'actions':'checkScale()'
+                  },
+                3:{
+                        'Section topic':'Measured Temperature',
+                        'Temperature':null                        
+                  },
+                4:{           
+                        'Section topic':'Measured Oxygen Concentration',         
+                        'Oxygen Concentration':null
+                  },
+                5:{
+                        'Section topic':'Measured Respiratory Rate',
+                        'Respiratory Rate':null
+                  }
+            };
+            
+            var tracker = {};
+            
+            function __$(id){
+                return document.getElementById(id);
+            }
+            
+            function checkCtrl(obj){
+                var o = obj;
+                var t = o.offsetTop;
+                var l = o.offsetLeft + 1;
+                var w = o.offsetWidth;
+                var h = o.offsetHeight;
+
+                while((o ? (o.offsetParent != document.body) : false)){
+                    o = o.offsetParent;
+                    t += (o ? o.offsetTop : 0);
+                    l += (o ? o.offsetLeft : 0);
+                }
+                return [w, h, t, l];
+            }
+     
+            function showKeyboard(ctrl, disabled){
+                if(__$('keyboard')){
+                    
+                    __$('workarea').removeChild(__$('keyboard'));
+                    
+                } else {
+                    target = ctrl;
+                
+                    var pos = checkCtrl(ctrl);
+                    
+                    if(typeof(disabled) == 'undefined') disabled = {};
+                    
+                    var div = document.createElement('div');
+                    div.id = 'keyboard';
+                    div.style.position = 'absolute';
+                    div.style.border = '1px solid #5ca6c4';
+                    div.style.borderRadius = '10px';
+                    div.style.left = pos[3] + 'px';
+                    div.style.top = (pos[2] + pos[1] + 2 - __$('parent').scrollTop) + 'px';
+                    div.style.zIndex = '1000';
+                    div.style.backgroundColor = 'rgba(255,255,255,0.8)';
+                    
+                    __$('workarea').appendChild(div);
+                    
+                    var keys = [[1,2,3],[4,5,6],[7,8,9],['.',0,'Bksp']];
+                    
+                    var table = document.createElement('div');
+                    table.style.display = 'table';
+                    table.style.margin = 'auto';
+                    
+                    div.appendChild(table);
+                    
+                    for(var i = 0; i < keys.length; i++){
+                        var row = document.createElement('div');
+                        row.style.display = 'table-row';
+                        
+                        table.appendChild(row);
+                        
+                        for(var j = 0; j < keys[i].length; j++){
+                            var cell = document.createElement('div');
+                            cell.style.display = 'table-cell';
+                            
+                            row.appendChild(cell);
+                            
+                            var button = document.createElement('button');
+                            button.setAttribute('class', (disabled[keys[i][j]] ? 'button_disabled' : 'button_refresh'));
+                            button.style.width = '90px';
+                            button.style.height = '80px';
+                            button.style.minWidth = '40px';
+                            button.style.minHeight = '40px';
+                            button.style.margin = '2px';
+                            
+                            button.id = keys[i][j];
+                            
+                            if(target && keys[i][j] == '.'){
+                                if(target.value.trim().match(/\./) || target.value.trim().length == 0){
+                                    button.setAttribute('class', 'button_disabled');
+                                } else {
+                                    button.setAttribute('class', 'button_refresh');
+                                }
+                            }
+                            
+                            button.innerHTML = keys[i][j];
+                            
+                            if(disabled[keys[i][j]]){
+                                    button.setAttribute('class', 'button_disabled');
+                            } else {
+                                button.setAttribute('class', 'button_refresh');
+                                
+                                button.onmousedown = function(){
+                                    if(this.innerHTML.trim() == 'Bksp'){
+                                        if(target){
+                                            target.value = target.value.trim().substring(0,(target.value.trim().length - 1));
+                                        }
+                                    } else if(this.innerHTML.trim() == '.'){
+                                        if(!target.value.trim().match(/\./)){
+                                            target.value += this.innerHTML.trim();
+                                        }
+                                    } else {
+                                        target.value += this.innerHTML.trim();
+                                    }
+                                    
+                                    if(target.value.trim().match(/\./)){
+                                        if(__$('.')){
+                                            __$('.').setAttribute('class', 'button_disabled');
+                                        } 
+                                    } else {
+                                        __$('.').setAttribute('class', 'button_refresh');
+                                    }
+                                }
+                            }
+                            
+                            cell.appendChild(button);
+                        }
+                    }
+                }
+            }
+     
+            function checkTracker(){
+                var found = false;
+                
+                for(var key in tracker){
+                    if(__$(key)){
+                        if(__$(key).value.trim().length > 0){
+                            tracker[key] = __$(key).value.trim();
+                            
+                            questions[currentPage][key] = __$(key).value.trim();
+                            
+                            if(__$('validate_' + key)){
+                                __$('validate_' + key).setAttribute('src', imgTick); 
+                            }
+                            
+                            if(__$('progress_' + key)){
+                                __$('progress_' + key).innerHTML = __$(key).value.trim();
+                            } 
+                        } else {
+                            tracker[key] = null;
+                            
+                            questions[currentPage][key] = null;
+                            
+                            if(__$('validate_' + key)){
+                                __$('validate_' + key).setAttribute('src', imgUnTick); 
+                            }
+                            
+                            if(__$('progress_' + key)){
+                                __$('progress_' + key).innerHTML = '&nbsp;';
+                            } 
+                        }
+                    }
+                    
+                    if(tracker[key] == null){
+                        found = true;
+                    }
+                }
+                
+                if(found){
+                    active = false;
+                    __$('btndone').setAttribute('class', 'button_disabled');
+                } else {
+                    active = true;
+                    __$('btndone').setAttribute('class', 'button_start');
+                }
+                
+                setTimeout('checkTracker()', 200);
+            }
+            
+            function showStatus(msg){
+                hideStatus();
+                
+                var shield = document.createElement('div');
+                shield.id = 'shield';
+                shield.style.position = 'absolute';
+                shield.style.top = '0px';
+                shield.style.left = '0px';
+                shield.style.width = '100%';
+                shield.style.height = '100%';
+                shield.style.backgroundColor = 'rgba(128,128,128,0.4)';
+                shield.style.margin = '0px';
+                
+                document.body.appendChild(shield);
+                
+                var div = document.createElement('div');
+                div.style.position = 'absolute';
+                div.style.top = '20px';
+                div.style.right = '20px';
+                div.style.backgroundColor = '#fcfac0';
+                div.style.borderRadius = '15px';
+                div.style.border = '1px solid #ccc';
+                div.innerHTML = msg;
+                div.style.padding = '10px';
+                
+                shield.appendChild(div);
+            }
+            
+            function hideStatus(){
+                if(__$('shield')){
+                    document.body.removeChild(__$('shield'));
+                }
+            }
+            
+            function checkScale(){
+                var keys = ['Weight', 'Height'];
+                
+                var httpWRequest = new XMLHttpRequest();
+                httpWRequest.onreadystatechange = function() {                  
+                    if (!httpWRequest) return;
+                  
+                    if (httpWRequest.readyState == 4 && httpWRequest.status == 200) {
+                
+                        var result = httpWRequest.responseText;
+             
+                        if(__$('Weight')){
+                            __$('Weight').value = result;
+                        }
+             
+                    }
+                };
+                try {
+                  httpWRequest.open('GET', 'http://localhost:3000/weight', true);
+                  httpWRequest.send(null);
+                } catch(e){
+                }
+                
+                var httpHRequest = new XMLHttpRequest();
+                httpHRequest.onreadystatechange = function() {                  
+                    if (!httpHRequest) return;
+                  
+                    if (httpHRequest.readyState == 4 && httpHRequest.status == 200) {
+                
+                        var result = httpHRequest.responseText;
+             
+                        if(__$('Height')){
+                            __$('Height').value = result;
+                        }
+             
+                    }
+                };
+                try {
+                  httpHRequest.open('GET', 'http://localhost:3000/height', true);
+                  httpHRequest.send(null);
+                } catch(e){
+                }
+                
+                actionHandle = setTimeout('checkScale()', 5000);
+            }
+            
+            function start(){
+                
+                showStatus('Starting machine...');
+                
+                var httpRequest = new XMLHttpRequest();
+                httpRequest.onreadystatechange = function() {                  
+                    if (!httpRequest) return;
+                  
+                    if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                
+                        var result = httpRequest.responseText;
+             
+                        __$('btnstart').setAttribute('class', 'button_stop');
+                        
+                        __$('btnstart').onmousedown = function(){
+                            stop();
+                        }
+                        
+                        __$('btnstart').innerHTML = 'Stop';
+             
+                        hideStatus();
+                        
+                        timerHandle = setTimeout('checkStatus()', 1000);
+                    }
+                };
+                try {
+                  httpRequest.open('GET', 'http://localhost:3000/bpstart', true);
+                  httpRequest.send(null);
+                } catch(e){
+                }
+            }
+            
+            function stop(){
+            
+                clearTimeout(timerHandle);
+                        
+                showStatus('Stopping...');
+                
+                var httpRequest = new XMLHttpRequest();
+                httpRequest.onreadystatechange = function() {                  
+                    if (!httpRequest) return;
+                  
+                    if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                
+                        var result = httpRequest.responseText;
+             
+                        __$('btnstart').setAttribute('class', 'button_start');
+                        
+                        __$('btnstart').onmousedown = function(){
+                            start();
+                        }
+                        
+                        __$('btnstart').innerHTML = 'Start';
+             
+                        hideStatus();
+                        
+                    }
+                };
+                try {
+                  httpRequest.open('GET', 'http://localhost:3000/bpstop', true);
+                  httpRequest.send(null);
+                } catch(e){
+                }
+            }
+            
+            function checkStatus(){
+                
+                showStatus('Checking progress status...');
+                
+                var httpRequest = new XMLHttpRequest();
+                httpRequest.onreadystatechange = function() {                  
+                    if (!httpRequest) return;
+                  
+                    if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                
+                        var result = httpRequest.responseText;
+             
+                        hideStatus();
+             
+                        if(result.trim().toLowerCase() == 'true'){
+                        
+                            clearTimeout(timerHandle);
+                        
+                            refresh();
+                        
+                            __$('btnstart').setAttribute('class', 'button_start');
+                            
+                            __$('btnstart').innerHTML = 'Start';                                                        
+                            
+                        } else {
+                            timerHandle = setTimeout('checkStatus()', 2000);
+                        }
+                    }
+                };
+                try {                  
+                  httpRequest.open('GET', 'http://localhost:3000/status', true);
+                  httpRequest.send(null);
+                } catch(e){
+                }
+                      
+            }
+            
+            function refresh(){
+                
+                showStatus('Reading values...');
+                
+                var httpRequest = new XMLHttpRequest();
+                httpRequest.onreadystatechange = function() {                  
+                    if (!httpRequest) return;
+                  
+                    if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                
+                        var result = httpRequest.responseText;
+             
+                        var json = JSON.parse(result);
+                        
+                        if(__$('Systolic Pressure'))
+                            __$('Systolic Pressure').value = json['systolic pressure'];
+                        
+                        if(__$('Diastolic Pressure'))
+                            __$('Diastolic Pressure').value = json['diastolic pressure'];
+                        
+                        if(__$('Pulse Rate'))
+                            __$('Pulse Rate').value = json['pulse rate'];
+                        
+                        systolic = json['systolic pressure'];
+                        
+                        diastolic = json['diastolic pressure'];
+                        
+                        pulse = json['pulse rate'];
+                        
+                        canRead = true;
+                        
+                        __$('btndone').setAttribute('class', 'button_start');
+                        
+                        __$('btnrefresh').setAttribute('class', 'button_refresh');
+                        
+                        hideStatus();
+                    }
+                };
+                try {
+                  httpRequest.open('GET', 'http://localhost:3000/read', true);
+                  httpRequest.send(null);
+                } catch(e){
+                }
+            }
+            
+            function buildBPPage(node){
+                __$('workarea').innerHTML = '';
+                
+                var table = document.createElement('table');
+                table.style.margin = 'auto';
+                table.style.fontSize = '0.9em';
+                table.setAttribute('cellpadding', 5);
+                table.setAttribute('cellspacing', 5);
+                
+                __$('workarea').appendChild(table);
+                
+                var tbody = document.createElement('tbody');
+                
+                table.appendChild(tbody);
+                
+                var row1 = document.createElement('tr');
+                
+                tbody.appendChild(row1);
+                
+                var cell1_1 = document.createElement('td');
+                cell1_1.setAttribute('colspan', 3);
+                cell1_1.setAttribute('align', 'center');
+                cell1_1.style.fontSize = '1.2em';
+                cell1_1.style.fontWeight = 'bold';
+                
+                cell1_1.innerHTML = 'Blood Pressure & Pulse Rate Readings';
+                
+                row1.appendChild(cell1_1);
+                
+                var row2 = document.createElement('tr');
+                
+                tbody.appendChild(row2);
+                
+                var cell2_1 = document.createElement('td');
+                cell2_1.style.backgroundColor = '#fcfac0';
+                cell2_1.style.borderRadius = '25px';
+                cell2_1.style.border = '1px dotted #f9f68a';
+                cell2_1.style.fontSize = '0.6em';
+                cell2_1.style.textAlign = 'center';
+                cell2_1.setAttribute('colspan', 3);
+                
+                cell2_1.innerHTML = 'The connected machine can measure blood pressure and pulse rate. <br/>Place the arm for the patient in the BP machine and press Start.';
+                
+                row2.appendChild(cell2_1);
+                
+                
+                for(var key in questions[node]){
+                    if(key.toLowerCase() == 'section topic' || key.toLowerCase() == 'builder') continue;
+                                          
+                    tracker[key] = questions[node][key];                                          
+                                            
+                    var row = document.createElement('tr');
+                    
+                    tbody.appendChild(row);
+                    
+                    var cell1 = document.createElement('td');
+                    cell1.setAttribute('align', 'right');
+                    cell1.style.width = '50%';
+                    
+                    cell1.innerHTML = key;
+                    
+                    row.appendChild(cell1);
+                    
+                    var cell2 = document.createElement('td');
+                    
+                    row.appendChild(cell2);    
+                    
+                    var input = document.createElement('input');
+                    input.type = 'text';
+                    input.setAttribute('class', 'input');
+                    input.id = key; 
+                    
+                    input.value = questions[node][key];
+                    
+                    input.onmousedown = function(){
+                        showKeyboard(this, {'.':true});
+                    }
+                    
+                    cell2.appendChild(input); 
+                                        
+                    var cell3 = document.createElement('td');
+                    
+                    row.appendChild(cell3);  
+                    
+                    var img = document.createElement('img');
+                    img.setAttribute('src', (questions[node][key] != null && String(questions[node][key]).trim().length > 0 ? imgTick : imgUnTick)); 
+                    img.setAttribute('height', 60); 
+                    img.id = 'validate_' + key;
+                    
+                    cell3.appendChild(img);
+                             
+                }                
+                
+                var row6 = document.createElement('tr');
+                
+                tbody.appendChild(row6);
+                
+                var cell6_1 = document.createElement('td');
+                cell6_1.setAttribute('align', 'right');
+                
+                row6.appendChild(cell6_1);
+                
+                var btnStart = document.createElement('button');
+                btnStart.setAttribute('class', 'button_start');
+                btnStart.id = 'btnstart';
+                
+                btnStart.innerHTML = 'Start';
+                
+                btnStart.onmousedown = function(){
+                    start();
+                }
+                
+                cell6_1.appendChild(btnStart);
+                
+                var cell6_2 = document.createElement('td');
+                cell6_2.setAttribute('colspan', 2);
+                
+                row6.appendChild(cell6_2);
+                
+                var btnRefresh = document.createElement('button');
+                btnRefresh.setAttribute('class', 'button_disabled');
+                btnRefresh.id = 'btnrefresh';
+                
+                btnRefresh.innerHTML = 'Refresh Results';
+                
+                btnRefresh.onmousedown = function(){
+                    if(canRead){refresh();}
+                }
+                
+                cell6_2.appendChild(btnRefresh);
+                
+            }
+            
+            function updateNodes(pos){
+                __$('nodes').innerHTML = '';
+                
+                clearTimeout(actionHandle);
+                
+                var table = document.createElement('div');
+                table.style.display = 'table';
+                table.style.minWidth = '100%';
+                table.style.borderSpacing = '1px';
+                table.style.fontSize = '0.8em';
+                
+                __$('nodes').appendChild(table);
+                
+                var hrow = document.createElement('div');
+                hrow.style.display = 'table-row';
+                
+                table.appendChild(hrow);
+                
+                var hc1 = document.createElement('div');
+                hc1.style.display = 'table-cell';
+                hc1.style.backgroundColor = '#ccc';
+                hc1.style.padding = '5px';
+                hc1.innerHTML = '<b>Page</b>';
+                
+                hrow.appendChild(hc1);
+                
+                var hc2 = document.createElement('div');
+                hc2.style.display = 'table-cell';
+                hc2.style.backgroundColor = '#ccc';
+                hc2.style.padding = '5px';
+                hc2.style.textAlign = 'left';
+                hc2.innerHTML = '<b>Questions</b>';
+                
+                hrow.appendChild(hc2);
+                
+                tracker = {};
+                
+                if(typeof(questions[pos]['Builder']) != 'undefined'){
+                    eval(questions[pos]['Builder']);
+                } else {
+                    loadPage(pos);
+                }
+                   
+                var i = 0;    
+                for(var node in questions){
+                    i++;
+                    
+                    var row = document.createElement('div');
+                    row.style.display = 'table-row';
+                    row.style.backgroundColor = (node == pos ? 'lightblue' : (i % 2 == 0 ? '#eee' : ''));
+                    row.id = node;
+                    
+                    row.onclick = function(){                                                
+                        updateNodes(this.id);
+                        
+                        currentPage = parseInt(this.id);
+                    }
+                    
+                    table.appendChild(row);
+                    
+                    var cell1_1 = document.createElement('div');
+                    cell1_1.style.display = 'table-cell';
+                    cell1_1.style.verticalAlign = 'top';
+                    cell1_1.innerHTML = node;
+                    
+                    row.appendChild(cell1_1);
+                    
+                    var cell1_2 = document.createElement('div');
+                    cell1_2.style.display = 'table-cell';
+                    cell1_2.style.verticalAlign = 'top';
+                    
+                    row.appendChild(cell1_2);
+                    
+                    var tbl = document.createElement('div');
+                    tbl.style.display = 'table';
+                    tbl.style.width = '100%';
+                    
+                    cell1_2.appendChild(tbl);                    
+                    
+                    var j = 0;
+                    var s = Object.keys(questions[node]).length - (typeof(questions[node]['Builder']) != 'undefined' ? 1 : 0) - (typeof(questions[node]['Section topic']) != 'undefined' ? 1 : 0) - (typeof(questions[node]['actions']) != 'undefined' ? 1 : 0);
+                    
+                    for(var key in questions[node]){
+                        
+                        if(key.toLowerCase() == 'builder' || key.toLowerCase() == 'section topic' || key.toLowerCase() == 'actions') continue;
+                        
+                        j++;        
+                        
+                        var tr = document.createElement('div');
+                        tr.style.display = 'table-row';
+                        
+                        tbl.appendChild(tr);
+                        
+                        var c1_1 = document.createElement('div');
+                        c1_1.style.display = 'table-cell';
+                        c1_1.style.textAlign = 'left';
+                        c1_1.innerHTML = key + ':';
+                        c1_1.style.padding = '3px';
+                        c1_1.style.borderBottom = (j < s ? '1px dotted #666' : '');
+                        
+                        tr.appendChild(c1_1);
+                        
+                        var c1_2 = document.createElement('div');
+                        c1_2.style.display = 'table-cell';
+                        c1_2.id = 'progress_' + key;
+                        c1_2.innerHTML = questions[node][key];
+                        c1_2.style.borderBottom = (j < s ? '1px dotted #666' : '');
+                        c1_2.style.textAlign = 'right';
+                        c1_2.style.paddingRight = '10px';
+                        
+                        tr.appendChild(c1_2);
+                                        
+                    }                    
+                }
+                
+                currentPage = pos;
+                
+                if(pos > 1){
+                    __$('btnback').setAttribute('class', 'button_refresh');
+                } else {
+                    __$('btnback').setAttribute('class', 'button_disabled');
+                }
+                
+                if(pos < Object.keys(questions).length){
+                    __$('btndone').innerHTML = 'Next';
+                    
+                    __$('btndone').onmousedown = function(){
+                        if(active){
+                            updateNodes(parseInt(pos) + 1);
+                        }
+                    }
+                } else {
+                    __$('btndone').innerHTML = 'Finish'; 
+                      
+                    __$('btndone').onmousedown = function(){
+                        if(active){
+                            submitResults();
+                        }
+                    }                 
+                }
+            }
+            
+            function submitResults(){
+                if(__$('frm')) return;
+                
+                var form = document.createElement('form');
+                form.action = destination;
+                form.id = 'frm';
+                
+                document.body.appendChild(form);
+                
+                for(var level in questions){
+                    for(var key in questions[level]){
+                        if(key.toLowerCase() == 'section topic' || key.toLowerCase() == 'builder' || key.toLowerCase() == 'actions') continue;
+                        
+                        var input = document.createElement('input');
+                        input.type = 'text';
+                        input.name = key;
+                        
+                        input.value = questions[level][key];
+                        
+                        form.appendChild(input);
+                    }
+                }
+                
+                form.submit();
+            }
+            
+            function loadPage(node){
+                __$('workarea').innerHTML = '';
+                
+                var table = document.createElement('table');
+                table.style.width = '100%';
+                table.style.margin = 'auto';
+                table.style.fontSize = '0.9em';
+                table.setAttribute('cellpadding', 5);
+                table.setAttribute('cellspacing', 5);
+                
+                __$('workarea').appendChild(table);
+                
+                var tbody = document.createElement('tbody');
+                
+                table.appendChild(tbody);
+                
+                var row1 = document.createElement('tr');
+                
+                tbody.appendChild(row1);
+                
+                var cell1_1 = document.createElement('td');
+                cell1_1.setAttribute('colspan', 3);
+                cell1_1.setAttribute('align', 'center');
+                cell1_1.style.fontSize = '1.2em';
+                cell1_1.style.fontWeight = 'bold';
+                
+                cell1_1.innerHTML = (typeof(questions[node]['Section topic']) != 'undefined' ? questions[node]['Section topic'] : 'Page ' + node + ' Questions');
+                
+                row1.appendChild(cell1_1);
+                
+                if(typeof(questions[node]['actions']) != 'undefined'){
+                    eval(questions[node]['actions']);
+                }
+                
+                for(var key in questions[node]){
+                    if(key.toLowerCase() == 'section topic' || key.toLowerCase() == 'builder' || key.toLowerCase() == 'actions') continue;
+                                          
+                    tracker[key] = questions[node][key];                                          
+                                            
+                    var row = document.createElement('tr');
+                    
+                    tbody.appendChild(row);
+                    
+                    var cell1 = document.createElement('td');
+                    cell1.setAttribute('align', 'right');
+                    cell1.style.width = '50%';
+                    
+                    cell1.innerHTML = key;
+                    
+                    row.appendChild(cell1);
+                    
+                    var cell2 = document.createElement('td');
+                    
+                    row.appendChild(cell2);    
+                    
+                    var input = document.createElement('input');
+                    input.type = 'text';
+                    input.setAttribute('class', 'input');
+                    input.id = key;  
+                    
+                    input.value = questions[node][key];
+                    
+                    input.onmousedown = function(){
+                        showKeyboard(this);
+                    }
+                    
+                    cell2.appendChild(input);    
+                         
+                    var cell3 = document.createElement('td');
+                    
+                    row.appendChild(cell3);  
+                    
+                    var img = document.createElement('img');
+                    img.setAttribute('src', (questions[node][key] != null && String(questions[node][key]).trim().length > 0 ? imgTick : imgUnTick)); 
+                    img.setAttribute('height', 60); 
+                    img.id = 'validate_' + key;
+                    
+                    cell3.appendChild(img);         
+                }
+            }
+            
+        </script>
+    </head>
+    <body onload='checkTracker(); updateNodes(1);'>
+        <div id='parent' style='text-align: center; width: 100%; height: 100%; border: 1px solid #000; background-color: #fff; padding: 0px; overflow: auto;'>
+            <div style='display: table; margin: 0.5%; font-size: 2em; width: 99%; height: 98%; border: 1px solid #fff; border-spacing: 5px;'>
+                <div style='display: table-row;'>
+                    <div style='display: table-cell; border: 1px solid #fff; padding: 5px;'>
+                        <div style='display: table; width: 30%; border: 1px solid #999; height: 100%; overflow: auto; float: left; border-radius: 10px;'>
+                            <div style='display: table-row;'>
+                                <div id='nodes' style='display: table-cell;'>
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <div style='display: table; width: 69.5%; border: 1px solid #999; height: 100%; float: right; border-radius: 10px;'>
+                            <div style='display: table-row;'>
+                                <div style='display: table-cell;'>
+                                    <div id='workarea' style='width: 100%; height: 100%; overflow: auto;'>
+                                        &nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style='display: table-row;'>
+                    <div id='nav' style='display: table-cell; border: 1px solid #fff; height: 100px; border-radius: 10px;'>
+                        <button class='button_stop' id='btncancel' onmousedown='' style='float: left;'>
+                            Cancel
+                        </button>
+                        <button class='button_disabled' id='btndone' onmousedown='' style='float: right;'>
+                            Next
+                        </button>
+                        <button class='button_disabled' id='btnback' onmousedown='if(currentPage > 1){updateNodes((currentPage - 1))}' style='float: right;'>
+                            Back
+                        </button>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        
+    </body>
+</html>
