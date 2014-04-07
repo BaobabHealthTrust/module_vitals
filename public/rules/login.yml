@@ -10,9 +10,11 @@ questions:
     question: Username
     id: username
     name: username
+    textcase: lower
     
   2:
     question: Password
     id: password
     name: password
     type: password
+    textcase: lower
